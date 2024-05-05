@@ -95,11 +95,11 @@
                             <?php //} ?>
                             <?php //if (strlen($_SESSION['bbdmsdid']==0)) {?>
                             <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="/admin/login">Admin</a>
+                                <a class="nav-link" href="/admin/login">Admin/Blood Bank</a>
                             </li>
                         </ul>
                         <!-- login -->
-                        <a href="login.php" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" >
+                        <a href="/donor/login" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" >
                             <i class="fas fa-sign-in-alt mr-2"></i>Login</a><?php// } ?>
                         <!-- //login -->
                     </div>
