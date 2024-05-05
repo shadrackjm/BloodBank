@@ -24,17 +24,17 @@ Route::get('/login',[AuthController::class,'LoginUser'])->name('LoginUser');
 Route::get('/',[LandingPage::class,'Landing']);
 Route::get('/landing',[LandingPage::class,'Landing']);
 Route::get('/admin/login',[AdminController::class,'loadAdminLoginPage']);
-Route::get('/admin/dashboard',[AdminController::class,'loadAdminDashboard']);
-Route::get('/admin/donor/list',[AdminController::class,'loadDonorList']);
-Route::get('/blood-groups',[AdminController::class,'loadBloodGroup']);
-Route::get('/blood-bank',[AdminController::class,'loadBloodBank']);
-Route::get('/blood-requests',[AdminController::class,'loadBloodRequests']);
-Route::get('/blood-stock',[AdminController::class,'loadBloodStock']);
-Route::get('/manage-users',[AdminController::class,'loadUsers']);
+Route::get('/admin/dashboard',[AdminController::class,'loadAdminDashboard'])->middleware('admin');
+Route::get('/admin/donor/list',[AdminController::class,'loadDonorList'])->middleware('admin');
+Route::get('/blood-groups',[AdminController::class,'loadBloodGroup'])->middleware('admin');
+Route::get('/blood-bank',[AdminController::class,'loadBloodBank'])->middleware('admin');
+Route::get('/blood-requests',[AdminController::class,'loadBloodRequests'])->middleware('admin');
+Route::get('/blood-stock',[AdminController::class,'loadBloodStock'])->middleware('admin');
+Route::get('/manage-users',[AdminController::class,'loadUsers'])->middleware('admin');
 
 // donor urls
 Route::get('/donor/login',[DonorController::class,'loadDonorLoginPage']);
 Route::get('/donor/registration',[DonorController::class,'loadDonorRegister']);
-Route::get('/donor/home',[DonorController::class,'loadHomePage']);
+Route::get('/donor/home',[DonorController::class,'loadHomePage'])->middleware('donor');
 Route::get('/register',[AuthController::class,'registerDonor'])->name('registerDonor');
 

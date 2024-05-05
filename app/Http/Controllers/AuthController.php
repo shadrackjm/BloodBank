@@ -48,7 +48,7 @@ class AuthController extends Controller
                 $message->to($data['email'])->subject($data['title']);
             });
 
-            return redirect('/donor/home')->with('success','You Have been Registered Successfully!');
+            return redirect('/donor/registration')->with('success','You Have been Registered Successfully!');
         } catch (\Exception $e) {
             return redirect('/donor/registration')->with('error',$e->getMessage());
             

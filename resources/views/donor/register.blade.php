@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+  <title>Blood Donation System</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -123,7 +123,7 @@
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
-                        <div class="col-6 my-2">
+                        <div class="col-13 my-2">
                             <label for="yourUsername" class="form-label">Address</label>
                             <input type="text" placeholder="Your Address" class="form-control" name="address">
                             @error('address')
@@ -132,14 +132,14 @@
                         </div>
                         <div class="col-6 my-2">
                             <label for="yourPassword" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" id="yourPassword">
+                            <input type="password" name="password" placeholder="Enter Your Password" class="form-control" id="yourPassword">
                            @error('password')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror 
                         </div>
                         <div class="col-6 my-2">
                             <label for="yourPassword" class="form-label">Confirm Password</label>
-                            <input type="password" name="password_confirmation" class="form-control" id="yourPassword">
+                            <input type="password" name="password_confirmation" placeholder="Confirm Your Password" class="form-control" id="yourPassword">
                              @error('password_confirmation')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -155,7 +155,7 @@
                       <button class="btn btn-primary w-100" type="submit">Register</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="/donor/registration">Create an account</a></p>
+                      <p class="small mb-0 my-3">have an account? <a href="/donor/login">Login</a></p>
                     </div>
                   </form>
 

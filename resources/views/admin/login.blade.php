@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+  <title>Blood Donation System</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -65,21 +65,26 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3" action="{{ route('LoginUser')}}">
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
-                      <input type="text" placeholder="Username" class="form-control">
+                      <input type="email" name="email" placeholder="Username" class="form-control">
+                      @error('email')
+                          <span>{{$message}}</span>
+                      @enderror
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <input type="password" name="password" class="form-control" id="yourPassword" >
+                      @error('password')
+                          <span>{{$message}}</span>
+                      @enderror
                     </div>
                     <div class="col-12">
-                        <a   class="btn btn-primary w-100" href="/admin/dashboard">Login</a>
-                      {{-- <button class="btn btn-primary w-100" type="submit">Login</button> --}}
+                        {{-- <a   class="btn btn-primary w-100" href="/admin/dashboard">Login</a> --}}
+                      <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
                   </form>
 

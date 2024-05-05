@@ -16,20 +16,18 @@
   <link href="{{ asset('img/favicon.png')}}" rel="icon">
   <link href="{{ asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-  <script src="{{ asset('js/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/export-excel.min.js') }}"></script>
-  <script src="{{ asset('row_merger/dist/row-merge-bundle.min.js') }}"></script>
+   <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="{{ asset('niceAdmin/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('niceAdmin/vendor/bootstrap/css/bootstrap.min.css')}}" >
+  <link rel="stylesheet" href="{{asset('niceAdmin/vendor/bootstrap-icons/bootstrap-icons.css')}}">
+  <link rel="stylesheet" href="{{asset('niceAdmin/vendor/boxicons/css/boxicons.min.css')}}">
+  <link rel="stylesheet" href="{{asset('niceAdmin/vendor/quill/quill.snow.css')}}">
+  <link rel="stylesheet" href="{{asset('niceAdmin/vendor/quill/quill.bubble.css')}}">
+  <link rel="stylesheet" href="{{asset('niceAdmin/vendor/remixicon/remixicon.css')}}">
+  <link rel="stylesheet" href="{{asset('niceAdmin/vendor/simple-datatables/style.css')}}">
+
   <!-- Template Main CSS File -->
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('niceAdmin/css/style.css')}}"> 
 
   <!-- =======================================================
   * Template Name: NiceAdmin
