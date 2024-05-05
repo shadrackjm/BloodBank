@@ -40,6 +40,14 @@ class AuthController extends Controller
             $user->password = Hash::make( $request->password );
             $user->save();
 
+            $data['email'] = $request->email;
+            $data['title'] = 'Welcome to BloodBank Management system';
+            $data['body'] = 'You have been registered successfully';
+
+            Mail::send('newUserMail',['data' => $data], function($message) use ($data){
+                $message->to($data['email'])->subject($data['title']);
+            });
+
             return redirect('/donor/home')->with('success','You Have been Registered Successfully!');
         } catch (\Exception $e) {
             return redirect('/donor/registration')->with('error',$e->getMessage());

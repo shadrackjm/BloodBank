@@ -15,6 +15,10 @@ Route::get('/reset/password',[AuthController::class,'loadResetPassword']);
 Route::post('/reset/user/password',[AuthController::class,'ResetPassword'])->name('ResetPassword');
 
 Route::get('/404',[AuthController::class,'load404']);
+Route::get('/logout',[AuthController::class,'LogoutUser']);
+Route::get('/login',[AuthController::class,'LoginUser'])->name('LoginUser');
+
+
 
 
 Route::get('/',[LandingPage::class,'Landing']);
@@ -32,7 +36,5 @@ Route::get('/manage-users',[AdminController::class,'loadUsers']);
 Route::get('/donor/login',[DonorController::class,'loadDonorLoginPage']);
 Route::get('/donor/registration',[DonorController::class,'loadDonorRegister']);
 Route::get('/donor/home',[DonorController::class,'loadHomePage']);
-Route::get('/logout',[AuthController::class,'LogoutUser']);
 Route::get('/register',[AuthController::class,'registerDonor'])->name('registerDonor');
-Route::get('/login',[AuthController::class,'LoginUser'])->name('LoginUser');
 
