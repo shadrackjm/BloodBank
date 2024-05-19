@@ -17,7 +17,7 @@
               <div class="card recent-sales overflow-auto">
 
                 <div class="filter">
-                    <a href="/add/blood-group" class="btn btn-success btn-sm mx-3">add new</a>
+                    <a href="/load-blood-group-form" class="btn btn-success btn-sm mx-3">add new</a>
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
@@ -29,7 +29,12 @@
                     <li><a class="dropdown-item" href="#">This Year</a></li>
                   </ul>
                 </div>
-
+                    @if (Session::has('success'))
+                      <div class="alert alert-success">{{Session::get('success')}}</div>
+                      @endif
+                      @if (Session::has('fail'))
+                          <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                      @endif
                 <div class="card-body">
                   <h5 class="card-title">Blood Groups</h5>
 
@@ -43,12 +48,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>A+</td>
-                        <td><button class="btn btn-primary btn-sm">Edit</button></td>
-                        <td><button class="btn btn-danger btn-sm">Delete</button></td>
-                      </tr>
+                      @if (count($bloods) > 0)
+                          @foreach ($bloods as $item)
+                              <tr>
+                                <th scope="row"><a href="#">{{$loop->iteration}}</a></th>
+                                <td>{{$item->name}}</td>
+                                <td><a class="btn btn-primary btn-sm" href="/edit-blood-group/{{$item->id}}">Edit</a></td>
+                                <td><a class="btn btn-danger btn-sm" href="/delete-blood-group/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
+                              </tr>
+                          @endforeach
+                      @else
+                          <tr>
+                            <td colspan="4">No data found!</td>
+                          </tr>
+                      @endif
+                      
                     </tbody>
                   </table>
 

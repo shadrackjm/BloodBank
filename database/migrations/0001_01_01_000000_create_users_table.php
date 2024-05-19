@@ -14,11 +14,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('age');
-            $table->string('gender');
-            $table->string('blood_group');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->string('role')->default(0); //0 - donor , 1- admin 2- blood bank
             $table->timestamp('email_verified_at')->nullable();

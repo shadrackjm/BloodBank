@@ -34,6 +34,7 @@
 
                   <table class="table table-sm table-bordered">
                     <thead>
+                     
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
@@ -45,16 +46,33 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>User Name</td>
-                        <td>user@gamil.com</td>
-                        <td>Donor</td>
-                        <td>27/28/2020</td>
-                        <td><span class="badge bg-success">Available</span></td>
-                        <td><button class="btn btn-primary btn-sm">Edit</button></td>
-                        <td><button class="btn btn-danger btn-sm">Delete</button></td>
-                      </tr>
+                       @if (count($all_users) > 0)
+                          @foreach ($all_users as $item)
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
+                                @if ($item->role == 0)
+                                    <td>Donor</td>
+                                @endif
+                                 @if ($item->role == 1)
+                                    <td>Admin</td>
+                                @endif
+                                 @if ($item->role == 2)
+                                    <td>Blood bank</td>
+                                @endif
+                                <td>{{$item->created_at}}</td>
+                                <td><span class="badge bg-success">active</span></td>
+                                <td><button class="btn btn-primary btn-sm">Edit</button></td>
+                                <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                              </tr>
+                          @endforeach
+                      @else
+                          <tr>
+                            <td>No data found!</td>
+                          </tr>
+                      @endif
+                      
                     </tbody>
                   </table>
 

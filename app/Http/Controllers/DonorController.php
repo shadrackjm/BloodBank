@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BloodGroup;
 use Illuminate\Http\Request;
 
 class DonorController extends Controller
@@ -11,7 +12,8 @@ class DonorController extends Controller
     }
 
     public function loadDonorRegister(){
-        return view('donor.register');
+        $blood_groups = BloodGroup::all();
+        return view('donor.register',compact('blood_groups'));
     }
 
     public function loadHomePage(){

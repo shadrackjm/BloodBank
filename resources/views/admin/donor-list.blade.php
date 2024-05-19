@@ -17,6 +17,7 @@
               <div class="card recent-sales overflow-auto">
 
                 <div class="filter">
+                  <a href="/load-add-donor" class="btn btn-success btn-sm mx-3">add new</a>
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
@@ -46,17 +47,26 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                        <td><button class="btn btn-primary btn-sm">Edit</button></td>
-                        <td><button class="btn btn-danger btn-sm">Delete</button></td>
-                      </tr>
+                      @if (count($all_donors) > 0)
+                          @foreach ($all_donors as $item)
+                              <tr>
+                                <th scope="row"><a href="#">{{$loop->iteration}}</a></th>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->age}}</td>
+                                <td>{{$item->blood_group}}</td>
+                                <td></td>
+                                <td></td>
+                                <td><span class="badge bg-success">Approved</span></td>
+                                <td><a href="/edit-donor/{{$item->id}}" class="btn btn-primary btn-sm">Edit</a></td>
+                                <td><a href="/delete-donor/{{$item->id}}" onclick="return confirm('are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</a></td>
+                              </tr>
+                          @endforeach
+                      @else
+                          <tr>
+                            <td colspan="8">No data found!</td>
+                          </tr>
+                      @endif
+                      
                     </tbody>
                   </table>
 

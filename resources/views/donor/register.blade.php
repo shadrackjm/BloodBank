@@ -110,14 +110,9 @@
                             <label for="yourUsername" class="form-label">Blood Group</label>
                             <select name="blood_group" id="" class="form-select">
                                 <option value="">Choose blood Group</option>
-                                <option value="A-">A-</option>
-                                <option value="A+">A+</option>
-                                <option value="B-">B-</option>
-                                <option value="B+">B+</option>
-                                <option value="AB-">AB-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
+                                @foreach ($blood_groups as $item)
+                                  <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
                             </select>
                              @error('blood_group')
                                 <span class="text-danger">{{$message}}</span>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donor;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -31,14 +32,18 @@ class AuthController extends Controller
         try {
             $user = new User;
             $user->name = $request->full_name;
-            $user->age = $request->age;
-            $user->phone = $request->phone;
-            $user->address = $request->address;
-            $user->gender = $request->gender;
-            $user->blood_group = $request->blood_group;
             $user->email = $request->email;
             $user->password = Hash::make( $request->password );
             $user->save();
+
+            $asDonor = new Donor;
+            $asDonor->user_id = $user->id;
+            $asDonor->age = $request->age;
+            $asDonor->phone = $request->phone;
+            $asDonor->address = $request->address;
+            $asDonor->gender = $request->gender;
+            $asDonor->blood_group_id = $request->blood_group;
+            $asDonor->save();
 
             $data['email'] = $request->email;
             $data['title'] = 'Welcome to BloodBank Management system';
