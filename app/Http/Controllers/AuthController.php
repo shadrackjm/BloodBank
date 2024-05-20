@@ -87,10 +87,10 @@ class AuthController extends Controller
                 }
                 
             }else{
-                return redirect(auth()->user()->role == 0 ? '/donor/login' : '/admin/login')->with('error','Wrong User Credentials');
+                return redirect()->back()->with('error','Wrong User Credentials');
             }
         } catch (\Exception $e) {
-            return redirect(auth()->user()->role == 0 ? '/donor/login' : '/admin/login')->with('error',$e->getMessage());
+            return redirect()->back()->with('error',$e->getMessage());
         }
     }
     // perform logout function here
