@@ -67,9 +67,17 @@ Route::group(['middleware' => 'admin'],function(){
 }); 
 
 // donor urls
+Route::group(['middleware' => 'donor'], function(){
+    Route::get('/donor/home',[DonorController::class,'loadHomePage']);
+    // profile
+    Route::get('/donor/profile',[DonorController::class,'loadProfile']);
+    Route::post('/update/profile',[DonorController::class,'UpdateProfile'])->name('donor-update-profile');
+    Route::post('/update/password',[DonorController::class,'UpdatePassword'])->name('donor-update-password');
+
+});
 Route::get('/donor/login',[DonorController::class,'loadDonorLoginPage']);
 Route::get('/donor/registration',[DonorController::class,'loadDonorRegister']);
-Route::get('/donor/home',[DonorController::class,'loadHomePage'])->middleware('donor');
+
 
 Route::get('/register',[AuthController::class,'registerDonor'])->name('registerDonor');
 

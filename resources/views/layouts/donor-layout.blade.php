@@ -71,7 +71,11 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            @if (empty(auth()->user()->image))
+              <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle">
+            @else
+              <img src="{{ Storage::url(auth()->user()->image) }}" alt="Profile" class="rounded-circle">
+            @endif
             <span class="d-none d-md-block dropdown-toggle ps-2">{{auth()->user()->name}}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -84,7 +88,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="/donor/profile">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
