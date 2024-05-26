@@ -45,7 +45,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="/admin/dashboard" class="logo d-flex align-items-center">
+      <a href="/donor/home" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Blood Donation System</span>
       </a>
@@ -71,11 +71,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            @if (empty(auth()->user()->image))
-              <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle">
-            @else
-              <img src="{{ Storage::url(auth()->user()->image) }}" alt="Profile" class="rounded-circle">
-            @endif
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">{{auth()->user()->name}}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -86,15 +82,20 @@
             <li>
               <hr class="dropdown-divider">
             </li>
+
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="/admin/profile">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>My Profile</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
             <li>
               <a class="dropdown-item d-flex align-items-center" href="/logout">
                 <i class="bi bi-box-arrow-right"></i>
@@ -116,67 +117,25 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="/admin/dashboard">
+        <a class="nav-link " href="/donor/home">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-droplet-fill"></i><span>Blood Group</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/blood-groups">
-              <i class="bi bi-circle"></i><span>Manage Blood Groups</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Icons Nav -->
 
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/admin/donor/list">
-          <i class="bi bi-person"></i>
-          <span>Manage Donor List</span>
+        <a class="nav-link collapsed" href="/">
+          <i class="bi bi-droplet-fill text-danger"></i>
+          <span>Manage Donation</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
-      
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/blood-bank">
-          <i class="bi bi-question-circle"></i>
-          <span>Manage Blood Bank</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/blood-requests">
-          <i class="bi bi-envelope"></i>
-          <span>Manage Blood Request</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="blood-stock">
-          <i class="bi bi-card-list"></i>
-          <span>Blood Bank Stock</span>
-        </a>
-      </li><!-- End Register Page Nav -->
         <li class="nav-item">
-        <a class="nav-link collapsed" href="/manage-users">
-          <i class="bi bi-people"></i>
-          <span>Manage User</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      </li><!-- End Register Page Nav -->
-        <li class="nav-item">
-        <a class="nav-link collapsed" href="/reports">
+        <a class="nav-link collapsed" href="/profile">
           <i class="bi bi-person"></i>
-          <span>Report</span>
+          <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
     </ul>

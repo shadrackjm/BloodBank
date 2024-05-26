@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('role')->default(0); //0 - donor , 1- admin 2- blood bank
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('image')->nullable();
             $table->string('password');
+            $table->string('status')->default(0); //0 -active, 1 - inactive
             $table->rememberToken();
             $table->timestamps();
         });

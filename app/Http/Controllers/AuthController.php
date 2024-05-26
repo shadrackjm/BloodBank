@@ -74,14 +74,14 @@ class AuthController extends Controller
             if(Auth::attempt($userCredentials)){
                 // redirect user to home page based on role 
                 // this allow us to use single login page to authenticate users with different roles..
-
+                // return auth()->user();
                 if(auth()->user()->role == 0){ //here role is a column I added in users table
                     return redirect('/donor/home');
                 }elseif(auth()->user()->role == 1){
                     return redirect('/admin/dashboard');
                 }
                 elseif(auth()->user()->role == 2){
-                    return redirect('/blood-bank/dashboard');
+                    return redirect('/blood-bank/home');
                 }else{
                     return redirect('/')->with('error','Error to find your role');
                 }

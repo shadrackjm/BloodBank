@@ -2,16 +2,23 @@
 
 @section('main-section')
 <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1>Donor List</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
           <li class="breadcrumb-item active">Donor List</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
+ 
     <section class="section dashboard">
+            @if (Session::has('success'))
+            <div class="alert alert-success p-2">{{Session::get('success')}}</div>
+            @endif
+            @if (Session::has('fail'))
+                <div class="alert alert-danger p-2">{{Session::get('fail')}}</div>
+            @endif
        <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
@@ -40,6 +47,9 @@
                         <th scope="col">Donor Name</th>
                         <th scope="col">Age</th>
                         <th scope="col">Blood Group</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
                         <th scope="col">Last Donation</th>
                         <th scope="col">Next Donation</th>
                         <th scope="col">Status</th>
@@ -54,9 +64,17 @@
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->age}}</td>
                                 <td>{{$item->blood_group}}</td>
+                                <td>{{$item->phone}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->address}}</td>
                                 <td></td>
                                 <td></td>
-                                <td><span class="badge bg-success">Approved</span></td>
+                                <td>@if ($item->status == 1)
+                                     <span class="badge bg-danger">inactive</span>
+                                @endif
+                                @if ($item->status == 0)
+                                <span class="badge bg-success">active</span></td>
+                                @endif
                                 <td><a href="/edit-donor/{{$item->id}}" class="btn btn-primary btn-sm">Edit</a></td>
                                 <td><a href="/delete-donor/{{$item->id}}" onclick="return confirm('are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</a></td>
                               </tr>

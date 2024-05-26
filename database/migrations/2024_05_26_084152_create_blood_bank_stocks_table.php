@@ -11,18 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donors', function (Blueprint $table) {
+        Schema::create('blood_bank_stocks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('blood_bank_id');
+            $table->foreign('blood_bank_id')->references('id')->on('blood_banks')->onDelete('cascade');
             $table->unsignedBigInteger('blood_group_id');
             $table->foreign('blood_group_id')->references('id')->on('blood_groups')->onDelete('cascade');
-            $table->integer('age');
-            $table->string('gender');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->date('next_donation')->nullable();
-            $table->integer('status')->default(0);
+            $table->integer('amount')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donors');
+        Schema::dropIfExists('blood_bank_stocks');
     }
 };

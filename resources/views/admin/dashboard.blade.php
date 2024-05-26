@@ -30,7 +30,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6>{{$donorCount}}</h6>
 
                     </div>
                   </div>
@@ -52,7 +52,7 @@
                       <i class="bi bi-card-checklist"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>20</h6>
+                      <h6>{{$bloodRequest}}</h6>
 
                     </div>
                   </div>
@@ -158,7 +158,7 @@
                       <i class="bi bi-droplet-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6>{{$bloodGroupsCount}}</h6>
 
                     </div>
                   </div>
@@ -180,7 +180,7 @@
                       <i class="bi bi-bank2"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>20</h6>
+                      <h6>{{$bloodBankCount}}</h6>
 
                     </div>
                   </div>

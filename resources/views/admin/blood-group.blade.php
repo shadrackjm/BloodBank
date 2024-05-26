@@ -12,6 +12,12 @@
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
+       @if (Session::has('success'))
+                      <div class="alert alert-success">{{Session::get('success')}}</div>
+                      @endif
+                      @if (Session::has('fail'))
+                          <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                      @endif
        <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
@@ -29,13 +35,9 @@
                     <li><a class="dropdown-item" href="#">This Year</a></li>
                   </ul>
                 </div>
-                    @if (Session::has('success'))
-                      <div class="alert alert-success">{{Session::get('success')}}</div>
-                      @endif
-                      @if (Session::has('fail'))
-                          <div class="alert alert-danger">{{Session::get('fail')}}</div>
-                      @endif
+                    
                 <div class="card-body">
+                 
                   <h5 class="card-title">Blood Groups</h5>
 
                   <table class="table table-sm table-bordered">
