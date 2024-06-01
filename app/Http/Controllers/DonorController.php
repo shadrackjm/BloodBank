@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donation;
+use App\Models\Donor;
 use App\Models\User;
 use App\Models\BloodGroup;
 use Illuminate\Http\Request;
@@ -20,10 +22,25 @@ class DonorController extends Controller
     }
 
     public function loadHomePage(){
-        return view('donor.home-page');
+        $user = auth()->user();
+        $my_donations = Donation::join('users','users.id','=','donations.user_id')
+        ->join('donors','donors.user_id','=','donations.user_id')
+        ->where('donations.user_id',$user->id)->limit(5)->get(['users.name','donations.*']);
+        return view('donor.home-page',compact('my_donations'));
+    }
+
+    public function loadAllDonations(){
+        $user = auth()->user();
+        $my_donations = Donation::join('users','users.id','=','donations.user_id')
+        ->join('donors','donors.user_id','=','donations.user_id')
+        ->where('donations.user_id',$user->id)->get(['users.name','donations.*']);
+        return view('donor.all-donation',compact('my_donations'));
     }
     public function loadProfile(){
-        return view('donor.profile');
+        $donor_details = Donor::join('blood_groups','blood_groups.id','=','donors.blood_group_id')
+         ->where('donors.user_id',auth()->user()->id)->first();
+
+        return view('donor.profile',compact('donor_details'));
     }
 
     public function UpdateProfile(Request $request){

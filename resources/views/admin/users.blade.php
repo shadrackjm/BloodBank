@@ -62,7 +62,12 @@
                                     <td>Blood bank</td>
                                 @endif
                                 <td>{{$item->created_at}}</td>
-                                <td><span class="badge bg-success">active</span></td>
+                                 @if ($item->status == 0)
+                                  <td><span class="badge bg-danger">inactive</span></td>
+                                @endif
+                                 @if ($item->status == 1)
+                                  <td><span class="badge bg-success">active</span></td>
+                                @endif
                                 <td><button class="btn btn-primary btn-sm">Edit</button></td>
                                 <td><button class="btn btn-danger btn-sm">Delete</button></td>
                               </tr>

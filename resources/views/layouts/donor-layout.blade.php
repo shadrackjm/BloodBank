@@ -130,14 +130,14 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/">
+        <a class="nav-link collapsed" href="/all/donations">
           <i class="bi bi-droplet-fill text-danger"></i>
-          <span>Manage Donation</span>
+          <span>All Donations</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-        <a class="nav-link collapsed" href="/profile">
+        <a class="nav-link collapsed" href="/donor/profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>

@@ -14,7 +14,7 @@
             </div>
             <div class="card-body">
                 
-                <form action="{{ route('edit-donor')}}" method="post">
+                <form action="{{ route('admin.edit-donor')}}" method="post">
                     @csrf
                     <input type="hidden" name="user_id" value="{{$donor->user_id}}">
                     <input type="hidden" name="donor_id" value="{{$donor->id}}">

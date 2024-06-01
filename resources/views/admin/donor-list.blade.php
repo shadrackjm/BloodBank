@@ -24,7 +24,7 @@
               <div class="card recent-sales overflow-auto">
 
                 <div class="filter">
-                  <a href="/load-add-donor" class="btn btn-success btn-sm mx-3">add new</a>
+                  <a href="/admin/load-add-donor" class="btn btn-success btn-sm mx-3">add new</a>
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
@@ -75,8 +75,8 @@
                                 @if ($item->status == 0)
                                 <span class="badge bg-success">active</span></td>
                                 @endif
-                                <td><a href="/edit-donor/{{$item->id}}" class="btn btn-primary btn-sm">Edit</a></td>
-                                <td><a href="/delete-donor/{{$item->id}}" onclick="return confirm('are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</a></td>
+                                <td><a href="/admin/edit-donor/{{$item->id}}" class="btn btn-primary btn-sm">Edit</a></td>
+                                <td><a href="/admin/delete-donor/{{$item->id}}" onclick="return confirm('are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</a></td>
                               </tr>
                           @endforeach
                       @else

@@ -77,6 +77,7 @@ Route::group(['middleware' => 'donor'], function(){
     Route::get('/donor/profile',[DonorController::class,'loadProfile']);
     Route::post('/update/profile',[DonorController::class,'UpdateProfile'])->name('donor-update-profile');
     Route::post('/update/password',[DonorController::class,'UpdatePassword'])->name('donor-update-password');
+    Route::get('/all/donations',[DonorController::class,'loadAllDonations']);
 
 });
 Route::get('/donor/login',[DonorController::class,'loadDonorLoginPage']);

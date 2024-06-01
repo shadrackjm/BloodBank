@@ -68,6 +68,14 @@
                   </div>
 
                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Blood Group</div>
+                    <div class="col-lg-9 col-md-8">{{$donor_details->name}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Age</div>
+                    <div class="col-lg-9 col-md-8">{{$donor_details->age}}</div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-3 col-md-4 label">Role</div>
                     <div class="col-lg-9 col-md-8">Donor</div>
                   </div>
@@ -101,6 +109,20 @@
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="name" type="text" class="form-control" id="fullName" value="{{auth()->user()->name}}">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Blood group</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="blood_group" type="text" class="form-control" id="fullName" value="{{$donor_details->name}}">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Age</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="age" type="text" class="form-control" id="fullName" value="{{$donor_details->age}}">
                       </div>
                     </div>
 

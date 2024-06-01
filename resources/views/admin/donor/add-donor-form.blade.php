@@ -14,7 +14,7 @@
             </div>
             <div class="card-body">
                 
-                <form action="{{ route('add-donor')}}" method="post">
+                <form action="{{ route('admin.add-donor')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="">Donor Full Name</label>

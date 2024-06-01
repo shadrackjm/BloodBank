@@ -117,9 +117,9 @@ class AdminController extends Controller
             $new = new BloodGroup;
             $new->name = $request->name;
             $new->save();
-            return redirect('/blood-groups')->with('success','blood Group added successfully');
+            return redirect('/admin/blood-groups')->with('success','blood Group added successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-groups')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-groups')->with('fail',$th->getMessage());
 
         }
         
@@ -130,9 +130,9 @@ class AdminController extends Controller
         try {
             $blood = BloodGroup::find($id);
             $blood->delete();
-            return redirect('/blood-groups')->with('success','blood group deleted successfully');
+            return redirect('/admin/blood-groups')->with('success','blood group deleted successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-groups')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-groups')->with('fail',$th->getMessage());
         }
     }
 
@@ -145,9 +145,9 @@ class AdminController extends Controller
             $blood->update([
                 'name' => $request->name
             ]);
-            return redirect('/blood-groups')->with('success','blood group updated successfully');
+            return redirect('/admin/blood-groups')->with('success','blood group updated successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-groups')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-groups')->with('fail',$th->getMessage());
         }
     }
 
@@ -166,9 +166,9 @@ class AdminController extends Controller
             $new->address = $request->address;
             $new->save();
 
-            return redirect('/blood-bank')->with('success','blood Bank added successfully');
+            return redirect('/admin/blood-bank')->with('success','blood Bank added successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-bank')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-bank')->with('fail',$th->getMessage());
 
         }
         
@@ -179,15 +179,16 @@ class AdminController extends Controller
         try {
             $blood = BloodBank::find($id);
             $blood->delete();
-            return redirect('/blood-bank')->with('success','blood bank deleted successfully');
+            return redirect('/admin/blood-bank')->with('success','blood bank deleted successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-bank')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-bank')->with('fail',$th->getMessage());
         }
     }
 
     public function loadEditBloodBank($id){
         $bloodBank = BloodBank::find($id);
-        return view('admin.bloodbanks.edit-blood-blank',compact('bloodBank'));
+        $AllbloodBanks = BloodBank::where('id','!=',$bloodBank->id)->get();
+        return view('admin.bloodbanks.edit-blood-blank',compact('bloodBank','AllbloodBanks'));
     }
 
     public function editBloodBank(Request $request){
@@ -201,9 +202,9 @@ class AdminController extends Controller
                 'name' => $request->name,
                 'address' => $request->address
             ]);
-            return redirect('/blood-bank')->with('success','blood group updated successfully');
+            return redirect('/admin/blood-bank')->with('success','blood group updated successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-bank')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-bank')->with('fail',$th->getMessage());
         }
     }
 
@@ -226,9 +227,9 @@ class AdminController extends Controller
             $new->blood_group_id = $request->blood_group_id;
             $new->amount = $request->amount;
             $new->save();
-            return redirect('/blood-stock')->with('success','blood Bank Stock added successfully');
+            return redirect('/admin/blood-stock')->with('success','blood Bank Stock added successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-stock')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-stock')->with('fail',$th->getMessage());
 
         }
         
@@ -239,19 +240,21 @@ class AdminController extends Controller
         try {
             $blood = BloodBankStock::find($id);
             $blood->delete();
-            return redirect('/blood-stock')->with('success','blood bank stock deleted successfully');
+            return redirect('/admin/blood-stock')->with('success','blood bank stock deleted successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-stock')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-stock')->with('fail',$th->getMessage());
         }
     }
 
     public function loadEditBloodBankStock($id){
-        $bloodBanks = BloodBank::all();
-        $bloodGroups = BloodGroup::all();
         $bloodBankStock = BloodBankStock::join('blood_banks','blood_banks.id','=','blood_bank_stocks.blood_bank_id')
         ->join('blood_groups','blood_groups.id','=','blood_bank_stocks.blood_group_id')
         ->where('blood_bank_stocks.id',$id)
-        ->first(['blood_bank_stocks.*','blood_groups.name as group_name','blood_groups.id as group_id','blood_banks.name','blood_banks.address']);
+        ->first(['blood_bank_stocks.*','blood_groups.name as group_name','blood_groups.id as group_id','blood_banks.name','blood_banks.id as bloodBank_id','blood_banks.address']);
+        $bloodGroups = BloodGroup::where('id','!=',$bloodBankStock->group_id)->get();
+        $bloodBanks = BloodBank::where('id','!=',$bloodBankStock->bloodBank_id)->get();
+
+
         return view('admin.bloodbanks.edit-blood-blank',compact('bloodBankStock','bloodBanks','bloodGroups'));
     }
 
@@ -267,9 +270,9 @@ class AdminController extends Controller
                 'blood_group_id' => $request->blood_group_id,
                 'amount' => $request->amount
             ]);
-            return redirect('/blood-stock')->with('success','blood bank stock updated successfully');
+            return redirect('/admin/blood-stock')->with('success','blood bank stock updated successfully');
         } catch (\Exception $th) {
-            return redirect('/blood-stock')->with('fail',$th->getMessage());
+            return redirect('/admin/blood-stock')->with('fail',$th->getMessage());
         }
     }
     // donor

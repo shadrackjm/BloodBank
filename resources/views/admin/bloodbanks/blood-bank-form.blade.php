@@ -6,7 +6,7 @@
                 <h3 class="card-title">Add New Blood Bank</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('add-blood-bank')}}" method="post">
+                <form action="{{ route('admin.add-blood-bank')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="">Blood Bank name</label>

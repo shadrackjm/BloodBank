@@ -55,8 +55,8 @@
                                 <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->address}}</td>
-                               <td><a class="btn btn-primary btn-sm" href="/edit-blood-bank/{{$item->id}}">Edit</a></td>
-                                <td><a class="btn btn-danger btn-sm" href="/delete-blood-bank/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
+                               <td><a class="btn btn-primary btn-sm" href="/admin/edit-blood-bank/{{$item->id}}">Edit</a></td>
+                                <td><a class="btn btn-danger btn-sm" href="/admin/delete-blood-bank/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
                               </tr>
                           @endforeach
                       @else

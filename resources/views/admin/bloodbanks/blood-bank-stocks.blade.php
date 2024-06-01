@@ -60,8 +60,8 @@
                                 <td>{{$item->address}}</td>
                                 <td>{{$item->group_name}}</td>
                                 <td>{{$item->amount}}</td>
-                               <td><a class="btn btn-primary btn-sm" href="/edit-blood-bank-stock/{{$item->id}}">Edit</a></td>
-                                <td><a class="btn btn-danger btn-sm" href="/delete-blood-bank-stock/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
+                               <td><a class="btn btn-primary btn-sm" href="/admin/edit-blood-bank-stock/{{$item->id}}">Edit</a></td>
+                                <td><a class="btn btn-danger btn-sm" href="/admin/delete-blood-bank-stock/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
                               </tr>
                           @endforeach
                       @else
