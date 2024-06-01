@@ -64,7 +64,12 @@
                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
-
+                     @if (Session::has('success'))
+                      <div class="alert alert-success p-2">{{Session::get('success')}}</div>
+                      @endif
+                      @if (Session::has('fail'))
+                          <div class="alert alert-danger p-2">{{Session::get('fail')}}</div>
+                      @endif
                   <form class="row g-3" action="{{ route('LoginUser')}}">
 
                     <div class="col-12">

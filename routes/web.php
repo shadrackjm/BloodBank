@@ -26,45 +26,49 @@ Route::get('/',[LandingPage::class,'Landing']);
 Route::get('/landing',[LandingPage::class,'Landing']);
     Route::get('/admin/login',[AdminController::class,'loadAdminLoginPage']);
 
-Route::group(['middleware' => 'admin'],function(){
-    Route::get('/admin/dashboard',[AdminController::class,'loadAdminDashboard']);
-    Route::get('/blood-groups',[AdminController::class,'loadBloodGroup']);
-    Route::get('/blood-bank',[AdminController::class,'loadBloodBank']);
-    Route::get('/blood-requests',[AdminController::class,'loadBloodRequests']);
-    Route::get('/manage-users',[AdminController::class,'loadUsers']);
-    // blood groups
-    Route::get('/load-blood-group-form',[AdminController::class,'loadAddBlood']);
-    Route::post('/add-blood-group',[AdminController::class,'addBloodGroup'])->name('add-blood-group');
-    Route::get('/delete-blood-group/{id}',[AdminController::class,'deleteBloodGroup']);
-    Route::get('/edit-blood-group/{id}',[AdminController::class,'loadEditBloodGroup']);
-    Route::post('/edit-blood-group',[AdminController::class,'editBloodGroup'])->name('edit-blood-group');
-    // blood banks
-    Route::get('/load-blood-bank-form',[AdminController::class,'loadAddBloodBank']);
-    Route::post('/add-blood-bank',[AdminController::class,'addBloodBank'])->name('add-blood-bank');
-    Route::get('/delete-blood-bank/{id}',[AdminController::class,'deleteBloodBank']);
-    Route::get('/edit-blood-bank/{id}',[AdminController::class,'loadEditBloodBank']);
-    Route::post('/edit-blood-bank',[AdminController::class,'editBloodBank'])->name('edit-blood-bank');
-    // blood bank stock
-    Route::get('/blood-stock',[AdminController::class,'loadBloodStock']);
-    Route::get('/load-blood-bank-stock-form',[AdminController::class,'loadAddBloodBankStock']);
-    Route::post('/add-blood-bank-stock',[AdminController::class,'addBloodBankStock'])->name('add-blood-bank-stock');
-    Route::get('/delete-blood-bank-stock/{id}',[AdminController::class,'deleteBloodBankStock']);
-    Route::get('/edit-blood-bank-stock/{id}',[AdminController::class,'loadEditBloodBankStock']);
-    Route::post('/edit-blood-bank-stock',[AdminController::class,'editBloodBankStock'])->name('edit-blood-bank-stock');
-    // donors
-    Route::get('/admin/donor/list',[AdminController::class,'loadDonorList']);
-    Route::get('/load-add-donor',[AdminController::class,'loadAddDonor']);
-    Route::post('/add-donor',[AdminController::class,'addDonor'])->name('add-donor');
-    Route::get('/delete-donor/{id}',[AdminController::class,'deleteDonor']);
-    Route::get('/edit-donor/{id}',[AdminController::class,'loadEditDonor']);
-    Route::post('/edit-donor',[AdminController::class,'editDonor'])->name('edit-donor');
-
-    // prfile
-    Route::get('/admin/profile',[AdminController::class,'loadAdminProfile']);
-    Route::post('/update/profile',[AdminController::class,'UpdateProfile'])->name('update-profile');
-    Route::post('/update/password',[AdminController::class,'UpdatePassword'])->name('update-password');
-
-}); 
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
+    Route::get('/dashboard', [AdminController::class, 'loadAdminDashboard']);
+    Route::get('/blood-groups', [AdminController::class, 'loadBloodGroup']);
+    Route::get('/blood-bank', [AdminController::class, 'loadBloodBank']);
+    Route::get('/blood-requests', [AdminController::class, 'loadBloodRequests']);
+    Route::get('/manage-users', [AdminController::class, 'loadUsers']);
+    
+    // Blood groups
+    Route::get('/load-blood-group-form', [AdminController::class, 'loadAddBlood']);
+    Route::post('/add-blood-group', [AdminController::class, 'addBloodGroup'])->name('admin.add-blood-group');
+    Route::get('/delete-blood-group/{id}', [AdminController::class, 'deleteBloodGroup']);
+    Route::get('/edit-blood-group/{id}', [AdminController::class, 'loadEditBloodGroup']);
+    Route::post('/edit-blood-group', [AdminController::class, 'editBloodGroup'])->name('admin.edit-blood-group');
+    
+    // Blood banks
+    Route::get('/load-blood-bank-form', [AdminController::class, 'loadAddBloodBank']);
+    Route::post('/add-blood-bank', [AdminController::class, 'addBloodBank'])->name('admin.add-blood-bank');
+    Route::get('/delete-blood-bank/{id}', [AdminController::class, 'deleteBloodBank']);
+    Route::get('/edit-blood-bank/{id}', [AdminController::class, 'loadEditBloodBank']);
+    Route::post('/edit-blood-bank', [AdminController::class, 'editBloodBank'])->name('admin.edit-blood-bank');
+    
+    // Blood bank stock
+    Route::get('/blood-stock', [AdminController::class, 'loadBloodStock']);
+    Route::get('/load-blood-bank-stock-form', [AdminController::class, 'loadAddBloodBankStock']);
+    Route::post('/add-blood-bank-stock', [AdminController::class, 'addBloodBankStock'])->name('admin.add-blood-bank-stock');
+    Route::get('/delete-blood-bank-stock/{id}', [AdminController::class, 'deleteBloodBankStock']);
+    Route::get('/edit-blood-bank-stock/{id}', [AdminController::class, 'loadEditBloodBankStock']);
+    Route::post('/edit-blood-bank-stock', [AdminController::class, 'editBloodBankStock'])->name('admin.edit-blood-bank-stock');
+    
+    // Donors
+    Route::get('/donor/list', [AdminController::class, 'loadDonorList']);
+    Route::get('/load-add-donor', [AdminController::class, 'loadAddDonor']);
+    Route::post('/add-donor', [AdminController::class, 'addDonor'])->name('admin.add-donor');
+    Route::get('/delete-donor/{id}', [AdminController::class, 'deleteDonor']);
+    Route::get('/edit-donor/{id}', [AdminController::class, 'loadEditDonor']);
+    Route::post('/edit-donor', [AdminController::class, 'editDonor'])->name('admin.edit-donor');
+    
+    // Profile
+    Route::get('/profile', [AdminController::class, 'loadAdminProfile']);
+    Route::post('/profile/update', [AdminController::class, 'updateProfile'])->name('admin.update-profile');
+    Route::post('/password/update', [AdminController::class, 'updatePassword'])->name('admin.update-password');
+});
+ 
 
 // donor urls
 Route::group(['middleware' => 'donor'], function(){

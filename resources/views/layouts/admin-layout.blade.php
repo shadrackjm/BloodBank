@@ -128,7 +128,7 @@
         </a>
         <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/blood-groups">
+            <a href="/admin/blood-groups">
               <i class="bi bi-circle"></i><span>Manage Blood Groups</span>
             </a>
           </li>
@@ -147,34 +147,34 @@
       
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/blood-bank">
+        <a class="nav-link collapsed" href="/admin/blood-bank">
           <i class="bi bi-question-circle"></i>
           <span>Manage Blood Bank</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/blood-requests">
+        <a class="nav-link collapsed" href="/admin/blood-requests">
           <i class="bi bi-envelope"></i>
           <span>Manage Blood Request</span>
         </a>
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="blood-stock">
+        <a class="nav-link collapsed" href="/admin/blood-stock">
           <i class="bi bi-card-list"></i>
           <span>Blood Bank Stock</span>
         </a>
       </li><!-- End Register Page Nav -->
         <li class="nav-item">
-        <a class="nav-link collapsed" href="/manage-users">
+        <a class="nav-link collapsed" href="/admin/manage-users">
           <i class="bi bi-people"></i>
           <span>Manage User</span>
         </a>
       </li><!-- End Profile Page Nav -->
       </li><!-- End Register Page Nav -->
         <li class="nav-item">
-        <a class="nav-link collapsed" href="/reports">
+        <a class="nav-link collapsed" href="/admin/reports">
           <i class="bi bi-person"></i>
           <span>Report</span>
         </a>

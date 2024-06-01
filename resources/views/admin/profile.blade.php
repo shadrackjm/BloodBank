@@ -81,7 +81,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form action="{{ route('update-profile')}}" method="POST" enctype="multipart/form-data">
+                  <form action="{{ route('admin.update-profile') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
@@ -120,7 +120,7 @@
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form action="{{ route('update-password')}}" method="POST">
+                  <form action="{{ route('admin.update-password')}}" method="POST">
                     @csrf
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
