@@ -1,4 +1,4 @@
-@extends('layouts/admin-layout')
+@extends('layouts/blood-bank-layout')
 @section('main-section')
        <div class="pagetitle">
       <h1>Blood Requests</h1>
@@ -58,7 +58,9 @@
                                   <span class="badge bg-danger">failed</span></td>
                                 @endif
                                 <td>{{$item->created_at}}</td>
-                                <td><a href="/admin/edit/{{$item->id}}" class="btn btn-primary btn-sm">Edit</a></td>
+
+                                
+                                <td><a href="/edit/{{$item->id}}" class="btn btn-primary btn-sm">Edit</a></td>
                               </tr>
                           @endforeach
                       @else

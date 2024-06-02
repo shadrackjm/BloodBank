@@ -14,36 +14,26 @@
                       @endif
                 <form action="{{ route('admin.edit-blood-bank')}}" method="post">
                     @csrf
-                    <input type="hidden" name="blood_bank_id" value="{{$bloodBankStock->id}}">
+                    <input type="hidden" name="blood_bank_id" value="{{$bloodBank->id}}">
                     <div class="form-group">
                         <label for="">Blood Bank Name</label>
-                        <select name="blood_bank_id" id="" class="form-select">
-                            <option value="{{$bloodBankStock->id}}">{{$bloodBankStock->name}}</option>
-                            @foreach ($bloodBanks as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('blood_bank_id')
+                        <input type="text" value="{{$bloodBank->name}}" name="name" class="form-control">
+                        @error('name')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Blood Group</label>
-                        <select name="blood_bank_id" id="" class="form-select">
-                            <option value="{{$bloodBankStock->group_id}}">{{$bloodBankStock->group_name}}</option>
-                            @foreach ($bloodGroups as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('blood_bank_id')
+                        <label for="">Email</label>
+                        <input type="email" name="email" class="form-control" value="{{$bloodBank->email}}">
+                        @error('email')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="">Blood Bank Stock Amount</label>
-                        <input type="text" value="{{$bloodBankStock->amount}}" class="form-control">
-                        @error('amount')
+                        <label for="">Blood Bank Address</label>
+                        <input type="text" value="{{$bloodBank->address}}" name="address" class="form-control">
+                        @error('address')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

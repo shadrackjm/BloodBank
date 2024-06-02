@@ -45,7 +45,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="/donor/home" class="logo d-flex align-items-center">
+      <a href="/blood-bank/home" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Blood Donation System</span>
       </a>
@@ -71,7 +71,11 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+  @if (empty(auth()->user()->image))
+              <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle">
+            @else
+              <img src="{{ Storage::url(auth()->user()->image) }}" alt="Profile" class="rounded-circle">
+            @endif
             <span class="d-none d-md-block dropdown-toggle ps-2">{{auth()->user()->name}}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -84,7 +88,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="/bank/profile">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -117,7 +121,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="/donor/home">
+        <a class="nav-link " href="/blood-bank/home">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -128,12 +132,18 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="/">
           <i class="bi bi-droplet-fill text-danger"></i>
-          <span>Manage Donation</span>
+          <span>Donations</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/blood-requests">
+          <i class="bi bi-reply text-danger"></i>
+          <span>Blood Requests</span>
+        </a>
+      </li>
         <li class="nav-item">
-        <a class="nav-link collapsed" href="/profile">
+        <a class="nav-link collapsed" href="/bank/profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>

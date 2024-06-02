@@ -6,7 +6,7 @@
                 <h3 class="card-title">Add New Blood Group</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('edit-blood-group')}}" method="post">
+                <form action="{{ route('admin.edit-blood-group')}}" method="post">
                     @csrf
                     <input type="hidden" name="blood_id" value="{{$blood->id}}">
                     <div class="form-group">

@@ -23,7 +23,7 @@
               <div class="card recent-sales overflow-auto">
 
                 <div class="filter">
-                    <a href="/load-blood-group-form" class="btn btn-success btn-sm mx-3">add new</a>
+                    <a href="/admin/load-blood-group-form" class="btn btn-success btn-sm mx-3">add new</a>
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
@@ -55,8 +55,8 @@
                               <tr>
                                 <th scope="row"><a href="#">{{$loop->iteration}}</a></th>
                                 <td>{{$item->name}}</td>
-                                <td><a class="btn btn-primary btn-sm" href="/edit-blood-group/{{$item->id}}">Edit</a></td>
-                                <td><a class="btn btn-danger btn-sm" href="/delete-blood-group/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
+                                <td><a class="btn btn-primary btn-sm" href="/admin/edit-blood-group/{{$item->id}}">Edit</a></td>
+                                <td><a class="btn btn-danger btn-sm" href="/admin/delete-blood-group/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
                               </tr>
                           @endforeach
                       @else

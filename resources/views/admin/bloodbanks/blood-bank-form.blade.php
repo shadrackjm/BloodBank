@@ -16,6 +16,13 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="email" value="{{ old('email')}}">
+                        @error('email')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="">Blood Bank address</label>
                         <input type="text" class="form-control" name="address" value="{{ old('address')}}">
                         @error('address')

@@ -42,7 +42,7 @@
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
-                <a href="/blood-requests">
+                <a href="/admin/blood-requests">
               <div class="card info-card revenue-card">
                 <div class="card-body">
                   <h5 class="card-title">Total Blood Requests</h5>
@@ -148,7 +148,7 @@
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
-                <a href="/blood-groups">
+                <a href="/admin/blood-groups">
               <div class="card info-card customers-card">
                 <div class="card-body">
                   <h5 class="card-title">Blood Groups</h5>
@@ -170,7 +170,7 @@
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
-                <a href="/blood-bank">
+                <a href="/admin/blood-bank">
               <div class="card info-card revenue-card">
                 <div class="card-body">
                   <h5 class="card-title">Blood Banks</h5>

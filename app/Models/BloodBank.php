@@ -12,5 +12,6 @@ class BloodBank extends Model
     protected $fillable = [
         'name',
         'address',
+        'user_id',
     ];
 }

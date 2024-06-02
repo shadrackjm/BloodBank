@@ -67,6 +67,12 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/profile', [AdminController::class, 'loadAdminProfile']);
     Route::post('/profile/update', [AdminController::class, 'updateProfile'])->name('admin.update-profile');
     Route::post('/password/update', [AdminController::class, 'updatePassword'])->name('admin.update-password');
+
+    // requests
+    Route::get('/load-request-form',[AdminController::class,'loadBloodRequestsForm']);
+    Route::post('/add/request',[AdminController::class,'addRequest'])->name('admin.add-request');
+    Route::get('/edit/{request}',[AdminController::class,'loadEditRequestsForm']);
+    Route::post('/edit/request',[AdminController::class,'editRequest'])->name('admin.edit-request');
 });
  
 
@@ -89,6 +95,17 @@ Route::get('/register',[AuthController::class,'registerDonor'])->name('registerD
 // blood banks routs
 Route::group(['middleware' => 'blood_bank'], function(){
     Route::get('/blood-bank/home',[BloodBankController::class,'loadHomePage']);
+
+    Route::get('/bank/profile',[BloodBankController::class,'loadProfile']);
+    Route::post('/update/profile',[BloodBankController::class,'UpdateProfile'])->name('bank-update-profile');
+    Route::post('/update/password',[BloodBankController::class,'UpdatePassword'])->name('bank-update-password');
+
+// blood requests
+    Route::get('/blood-requests',[BloodBankController::class,'loadBloodRequests']);
+    Route::get('/load-request-form',[BloodBankController::class,'loadBloodRequestsForm']);
+    Route::post('/add/request',[BloodBankController::class,'addRequest'])->name('add-request');
+    Route::get('/edit/{request}',[BloodBankController::class,'loadEditRequestsForm']);
+    Route::post('/edit/request',[BloodBankController::class,'editRequest'])->name('edit-request');
 
 });
 

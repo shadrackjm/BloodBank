@@ -12,6 +12,12 @@
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
+      @if (Session::has('success'))
+                      <div class="alert alert-success">{{Session::get('success')}}</div>
+                      @endif
+                      @if (Session::has('fail'))
+                          <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                      @endif
        <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
@@ -31,12 +37,7 @@
                 </div>
     
                 <div class="card-body">
-                      @if (Session::has('success'))
-                      <div class="alert alert-success">{{Session::get('success')}}</div>
-                      @endif
-                      @if (Session::has('fail'))
-                          <div class="alert alert-danger">{{Session::get('fail')}}</div>
-                      @endif
+                      
                   <h5 class="card-title">Blood Banks</h5>
 
                   <table class="table table-sm table-bordered">
@@ -44,6 +45,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Health Care Center</th>
+                        <th scope="col">Email</th>
                         <th scope="col">address</th>
                         <th scope="col" colspan="2">Actions</th>
                       </tr>
@@ -54,6 +56,7 @@
                               <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
                                 <td>{{$item->address}}</td>
                                <td><a class="btn btn-primary btn-sm" href="/admin/edit-blood-bank/{{$item->id}}">Edit</a></td>
                                 <td><a class="btn btn-danger btn-sm" href="/admin/delete-blood-bank/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>

@@ -31,6 +31,10 @@ class AdminController extends Controller
                 if ($request->file('image')) {
                     $path = $request->file('image')->store('public/images');
                     $user = User::find(auth()->user()->id);
+                    $old_image = $user->image;
+                    if (!empty($old_image)) {
+                        Storage::delete($old_image);
+                    }
                     $user->update([
                         'name' => $request->name,
                         'email' => $request->email,
@@ -39,6 +43,14 @@ class AdminController extends Controller
                     $path = $request->file('image')->store('public/images');
                     $url = Storage::url($path);
                     return back()->with('success', 'Profile updated successfully')->with('path', $url);
+                }else{
+                    $user = User::find(auth()->user()->id);
+                    $user->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                    ]);
+                    return back()->with('success', 'Profile updated successfully');
+
                 }
         } catch (\Exception $th) {
                     return back()->with('fail', $th->getMessage());
@@ -81,12 +93,15 @@ class AdminController extends Controller
     }
 
     public function loadBloodBank(){
-        $all_bloodBanks = BloodBank::all();
+        $all_bloodBanks = BloodBank::join('users','users.id','=','blood_banks.user_id')
+        ->get(['users.email','blood_banks.*']);
         return view('admin.blood-bank',compact('all_bloodBanks'));
     }
 
     public function loadBloodRequests(){
-        return view('admin.blood-requests');
+        $request_details = BloodRequest::join('blood_groups','blood_groups.id','=','blood_requests.blood_group_id')
+        ->get(['blood_groups.name as blood_group','blood_requests.*']);
+        return view('admin.blood-requests',compact('request_details'));
     }
 
     public function loadBloodStock(){
@@ -159,9 +174,19 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|unique:blood_banks',
             'address' => 'required',
+            'email' => 'required',
         ]);
         try {
+
+            $newUser = new User();
+            $newUser->name = $request->name;
+            $newUser->email = $request->email;
+            $newUser->role = 2;
+            $newUser->password = Hash::make('123456');
+            $newUser->save();
+
             $new = new BloodBank;
+            $new->user_id = $newUser->id;
             $new->name = $request->name;
             $new->address = $request->address;
             $new->save();
@@ -186,21 +211,29 @@ class AdminController extends Controller
     }
 
     public function loadEditBloodBank($id){
-        $bloodBank = BloodBank::find($id);
-        $AllbloodBanks = BloodBank::where('id','!=',$bloodBank->id)->get();
-        return view('admin.bloodbanks.edit-blood-blank',compact('bloodBank','AllbloodBanks'));
+        $bloodBank = BloodBank::join('users','users.id','=','blood_banks.user_id')
+        ->first(['users.email','blood_banks.*']);
+        return view('admin.bloodbanks.edit-blood-blank',compact('bloodBank'));
     }
 
     public function editBloodBank(Request $request){
         $request->validate([
             'name' => 'required',
             'address' => 'required',
+            'blood_bank_id' => 'required',
+            'email' => 'required',
         ]);
         try {
             $blood = BloodBank::find($request->blood_bank_id);
             $blood->update([
                 'name' => $request->name,
                 'address' => $request->address
+            ]);
+
+            $user = User::find($blood->user_id);
+            $user->update([
+                'email' => $request->email,
+                'name' => $request->name,
             ]);
             return redirect('/admin/blood-bank')->with('success','blood group updated successfully');
         } catch (\Exception $th) {
@@ -255,7 +288,7 @@ class AdminController extends Controller
         $bloodBanks = BloodBank::where('id','!=',$bloodBankStock->bloodBank_id)->get();
 
 
-        return view('admin.bloodbanks.edit-blood-blank',compact('bloodBankStock','bloodBanks','bloodGroups'));
+        return view('admin.bloodbanks.edit-bloodbank-stock',compact('bloodBankStock','bloodBanks','bloodGroups'));
     }
 
     public function editBloodBankStock(Request $request){
@@ -367,5 +400,87 @@ class AdminController extends Controller
         } catch (\Exception $th) {
             return redirect('/admin/donor/list')->with('fail',$th->getMessage());
         }
+    }
+
+        public function loadBloodRequestsForm(){
+        $blood_groups = BloodGroup::all();
+        return view('admin.requests-form',compact('blood_groups'));
+    }
+
+     public function loadEditRequestsForm($id){
+        $request = BloodRequest::join('blood_groups','blood_groups.id','=','blood_requests.blood_group_id')
+        ->where('blood_requests.id',$id)
+        ->first(['blood_groups.name as blood_group','blood_groups.id as blood_group_id','blood_requests.*']);
+        $blood_groups = BloodGroup::where('id','!=',$request->blood_group_id)->get();
+        return view('admin.edit-requests-form',compact('blood_groups','request'));
+    }
+
+     public function addRequest(Request $request){
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'address' => 'string',
+            'phone' => 'string',
+            'age' => 'required',
+            'gender' => 'required',
+            'blood_group_id' => 'required',
+        ]);
+        try {
+            $new = new BloodRequest();
+            $new->blood_group_id = $request->blood_group_id;
+            $new->blood_bank_id = auth()->user()->id;
+            $new->Name = $request->name;
+            $new->email = $request->email;
+            $new->age = $request->age;
+            $new->gender = $request->gender;
+            $new->phone_number = $request->phone;
+            $new->address = $request->address;
+            $new->amount = $request->amount;
+            $new->price = $request->price;
+            $new->status = $request->status;
+            $new->save();
+
+            return redirect('/admin/blood-requests')->with('success','Patient Blood Request added successfully');
+        } catch (\Exception $th) {
+            return redirect('/admin/blood-requests')->with('fail',$th->getMessage());
+
+        }
+        
+    }
+
+     public function editRequest(Request $request){
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'address' => 'string',
+            'phone' => 'string',
+            'age' => 'required',
+            'gender' => 'required',
+            'blood_group_id' => 'required',
+        ]);
+        try {
+            $updateRequest = BloodRequest::find($request->request_id);
+            $updateRequest->update([
+                    'blood_group_id' => $request->blood_group_id,
+                    'Name' => $request->name,
+                    'email' => $request->email,
+                    'age' => $request->age,
+                    'gender' => $request->gender,
+                    'phone_number' => $request->phone,
+                    'address' => $request->address,
+                    'amount' => $request->amount,
+                    'price' => $request->price,
+                    'status' => $request->status,
+            ]);
+            
+
+            return redirect('/admin/blood-requests')->with('success','Patient Blood Request Updated successfully');
+        } catch (\Exception $th) {
+            return redirect('/admin/blood-requests')->with('fail',$th->getMessage());
+
+        }
+        
     }
 }

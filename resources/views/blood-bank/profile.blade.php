@@ -1,4 +1,4 @@
-@extends('layouts/donor-layout')
+@extends('layouts/blood-bank-layout')
 @section('main-section')
        <div class="pagetitle">
       <h1>Profile</h1>
@@ -68,16 +68,8 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Blood Group</div>
-                    <div class="col-lg-9 col-md-8">{{$donor_details->name}}</div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Age</div>
-                    <div class="col-lg-9 col-md-8">{{$donor_details->age}}</div>
-                  </div>
-                  <div class="row">
                     <div class="col-lg-3 col-md-4 label">Role</div>
-                    <div class="col-lg-9 col-md-8">Donor</div>
+                    <div class="col-lg-9 col-md-8">Blood Bank</div>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
@@ -89,7 +81,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form action="{{ route('donor-update-profile')}}" method="POST" enctype="multipart/form-data">
+                  <form action="{{ route('bank-update-profile')}}" method="POST" enctype="multipart/form-data">
                   @csrf
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
@@ -113,9 +105,9 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Age</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Address</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="age" type="text" class="form-control" id="fullName" value="{{$donor_details->age}}">
+                        <input name="address" type="text" class="form-control" id="fullName" value="{{$donor_details->address}}">
                       </div>
                     </div>
 
@@ -135,7 +127,7 @@
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form action="{{ route('donor-update-password')}}" method="POST">
+                  <form action="{{ route('bank-update-password')}}" method="POST">
                     @csrf
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>

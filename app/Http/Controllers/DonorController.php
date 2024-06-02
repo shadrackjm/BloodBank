@@ -45,20 +45,43 @@ class DonorController extends Controller
 
     public function UpdateProfile(Request $request){
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'name' => 'required',
+            'email' => 'required',
+            'age' => 'required',
         ]);
         try {
                 if ($request->file('image')) {
                     $path = $request->file('image')->store('public/images');
                     $user = User::find(auth()->user()->id);
+                    $old_image = $user->image;
+
+                    Storage::delete($old_image);
                     $user->update([
                         'name' => $request->name,
                         'email' => $request->email,
                         'image' => $path,
                     ]);
-                    $path = $request->file('image')->store('public/images');
+                    
+                    $update_age = Donor::where('user_id',$user->id)->first();
+                    $update_age->update([
+                        'age' => $request->age
+                    ]);
                     $url = Storage::url($path);
                     return back()->with('success', 'Profile updated successfully')->with('path', $url);
+                }else{
+                    $user = User::find(auth()->user()->id);
+                    $user->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                    ]);
+                   
+                    $update_age = Donor::where('user_id',$user->id)->first();
+                    $update_age->update([
+                        'age' => $request->age
+                    ]);
+                    return back()->with('success', 'Profile updated successfully');
+
                 }
         } catch (\Exception $th) {
                     return back()->with('fail', $th->getMessage());
