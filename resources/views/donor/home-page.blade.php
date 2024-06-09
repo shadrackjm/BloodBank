@@ -82,7 +82,7 @@
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-header">
-                  <a href="/all/donations" class="btn btn-success btn-sm mx-3 float-end">view all</a>
+                  <a href="/donor/all/donations" class="btn btn-success btn-sm mx-3 float-end">view all</a>
                   <h5 class="card-title">My Recent Donations </h5>
 
                 </div>

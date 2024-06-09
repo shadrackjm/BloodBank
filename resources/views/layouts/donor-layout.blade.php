@@ -130,7 +130,7 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/all/donations">
+        <a class="nav-link collapsed" href="/donor/all/donations">
           <i class="bi bi-droplet-fill text-danger"></i>
           <span>All Donations</span>
         </a>

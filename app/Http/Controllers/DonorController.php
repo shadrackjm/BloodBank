@@ -55,8 +55,10 @@ class DonorController extends Controller
                     $path = $request->file('image')->store('public/images');
                     $user = User::find(auth()->user()->id);
                     $old_image = $user->image;
-
-                    Storage::delete($old_image);
+                    if (!empty($old_image)) {
+                        # code...
+                        Storage::delete($old_image);
+                    }
                     $user->update([
                         'name' => $request->name,
                         'email' => $request->email,

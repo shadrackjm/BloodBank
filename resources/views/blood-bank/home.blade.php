@@ -21,15 +21,15 @@
         <div class="col-xl-4">
 
           <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-            @if (empty(auth()->user()->image))
-              <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle">
-            @else
-              <img src="{{ Storage::url(auth()->user()->image) }}" alt="Profile" class="rounded-circle">
-            @endif
-              <h2>{{auth()->user()->name}}</h2>
-              <h3>Donor</h3>
-            </div>
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                    @if (empty(auth()->user()->image))
+                    <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle">
+                    @else
+                    <img src="{{ Storage::url(auth()->user()->image) }}" alt="Profile" class="rounded-circle">
+                    @endif
+                    <h2>{{auth()->user()->name}}</h2>
+                    <h3>Donor</h3>
+                </div>
           </div>
 
         </div>

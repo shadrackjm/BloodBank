@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 <head>
-	<title>Blood Bank Donar Management System | Home Page</title>
+	<title>Blood Bank Donor Management System | Home Page</title>
 	
 	<script>
 		addEventListener("load", function () {
@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="{{ asset('css/fontawesome-all.css')}}">
 	<!-- Font-Awesome-Icons-CSS -->
 	<!-- //Custom-Files -->
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<!-- Web-Fonts -->
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
 	    rel="stylesheet">
@@ -46,7 +46,7 @@
                 <div class="container">
                     <!-- logo -->
                     <h6>
-                        <a class="navbar-brand font-weight-bold font-italic" href="index.php">
+                        <a class="navbar-brand font-weight-bold font-italic" href="/">
                             <span>Blood Donation</span>
                             <i class="fa fa-flask"></i>
                         </a>
@@ -59,40 +59,23 @@
                     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-lg-auto">
                             <li class="nav-item active mt-lg-0 mt-3">
-                                <a class="nav-link" href="index.php">Home
+                                <a class="nav-link" href="/">Home
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="about.php">About Us</a>
+                                <a class="nav-link" href="/">About Us</a>
                             </li>
                             <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="contact.php">Contact Us</a>
+                                <a class="nav-link" href="/">Contact Us</a>
                             </li>
                             <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="donor-list.php">Donor List</a>
+                                <a class="nav-link" href="/">Donor List</a>
                             </li>
                             <li class="nav-item mx-lg-4 my-lg-0 my-3">
                                 <a class="nav-link" href="search-donor.php">Search Donor</a>
                             </li>
-                            <?php //if (strlen($_SESSION['bbdmsdid']!=0)) {?>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    My Account
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                                    <a class="dropdown-item" href="profile.php">Profile</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="change-password.php">Change Password</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="request-received.php">Request Received</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logout.php">Logout</a>
-                                </div>
-                            </li>
-                            <?php //} ?>
+                            
                             <?php //if (strlen($_SESSION['bbdmsdid']==0)) {?>
                             <li class="nav-item mx-lg-4 my-lg-0 my-3">
                                 <a class="nav-link" href="/admin/login">Admin/Blood Bank</a>
@@ -254,49 +237,23 @@
 	</div>
 	<!-- //banner bottom -->
 	<!-- blog -->
-	<div class="blog-w3ls py-5" id="blog">
-		<div class="container py-xl-5 py-lg-3">
-			<div class="w3ls-titles text-center mb-5">
-				<h3 class="title text-white">Some of the Donar</h3>
-				<span>
-					<i class="fas fa-user-md text-white"></i>
-				</span>
-			</div>
-			<div class="row package-grids mt-5">
-				<?php 
-// $status=1;
-// $sql = "SELECT * from tblblooddonars where status=:status order by rand() limit 6";
-// $query = $dbh -> prepare($sql);
-// $query->bindParam(':status',$status,PDO::PARAM_STR);
-// $query->execute();
-// $results=$query->fetchAll(PDO::FETCH_OBJ);
-// $cnt=1;
-// if($query->rowCount() > 0)
-// {
-// foreach($results as $result)
-// { 
-    ?>
-				<div class="col-md-4 pricing" style="margin-top:2%;">
-					
-					<div class="price-top">
-					
-							<img src="{{asset('images/blood-donor.jpg')}}" alt="" class="img-fluid" />
-					
-						<h3><?php // echo htmlentities($result->FullName);?>
-						</h3>
-					</div>
-					<div class="price-bottom p-4">
-						<h4 class="text-dark mb-3">Gender: <?php //echo htmlentities($result->Gender);?></h4>
-						<p class="card-text"><b>Blood Group :</b> <?php // echo htmlentities($result->BloodGroup);?></p>
-						
-						<a class="btn btn-primary" style="color:#fff" href="contact-blood.php?cid=<?php //echo $result->id;?>">Request</a>
-					</div>
-				</div><?php //}} ?>
-			
-			
-			</div>
-		</div>
-	</div>
+	<div class="container-fluid">
+        <div class="row">
+            <h1 class="card-title text-center my-3">Some of Our Donor</h1>
+            @foreach ($all_donors as $item)
+                <div class="card col-md-3 m-2">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                    @if (empty($item->image))
+                    <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle" height="70px" width="70px">
+                    @else
+                    <img src="{{ Storage::url($item->image) }}" alt="Profile" class="rounded-circle" height="70px" width="70px">
+                    @endif
+                    <h2>{{$item->name}}</h2>
+                </div>
+          </div>
+            @endforeach
+        </div>
+    </div>
 	<!-- //blog -->
 
 	<!-- treatments -->
@@ -337,7 +294,7 @@ Type O individuals are often called "universal donors" since their blood can be 
             </div>
             <div class="col-md-4" style="padding-top: 30px;"> 
     
-                <a class="btn btn-lg btn-secondary btn-block login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" data-toggle="modal" data-target="#exampleModalCenter1" href="#" data-toggle="modal" data-target="#exampleModalCenter1"> Become a Donar</a>
+                <a class="btn btn-lg btn-secondary btn-block login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3"  href="/donor/registration" > Become a Donar</a>
             </div>
         </div>
 		</div>
@@ -351,7 +308,7 @@ Type O individuals are often called "universal donors" since their blood can be 
         <div class="row">
           <div class="col-md-4 w3l-footer">
             <h2 class="mb-sm-3 mb-2">
-              <a href="index.php" class="text-white font-italic font-weight-bold">
+              <a href="/" class="text-white font-italic font-weight-bold">
                 <span>Blood Bank & </span>Donor Management System 
                 <i class="fas fa-syringe ml-2"></i>
               </a>
@@ -398,7 +355,7 @@ Type O individuals are often called "universal donors" since their blood can be 
             <div class="nav-w3-l">
               <ul class="list-unstyled">
                 <li>
-                  <a href="index.php">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li class="mt-2">
                   <a href="about.php">About Us</a>

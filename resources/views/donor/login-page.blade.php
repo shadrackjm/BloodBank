@@ -74,7 +74,7 @@
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
-                      <input type="text" placeholder="Username" class="form-control" name="email">
+                      <input type="text" placeholder="Username" class="form-control" name="email" value="{{old('email')}}">
                       @error('email')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
