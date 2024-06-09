@@ -38,7 +38,6 @@ class DonorController extends Controller
 
     public function UpdateProfile(Request $request){
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required',
             'email' => 'required',
             'age' => 'required',
