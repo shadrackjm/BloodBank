@@ -90,7 +90,7 @@ class DonorController extends Controller
                 
                     $user = User::find(auth()->user()->id);
                     $user->update([
-                        'password' => Hash::make($request->name),
+                        'password' => Hash::make($request->password),
                     ]);
                     return back()->with('success', 'Password updated successfully');
         } catch (\Exception $th) {

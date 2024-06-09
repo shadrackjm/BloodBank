@@ -92,14 +92,14 @@ class AuthController extends Controller
                 elseif(auth()->user()->role == 2){
                     return redirect('/blood-bank/home');
                 }else{
-                    return redirect('/')->with('error','Error to find your role');
+                    return redirect('/login')->with('error','Error to find your role');
                 }
                 
             }else{
-                return redirect()->back()->with('error','Wrong User Credentials');
+                return redirect('/login')->with('error','Wrong User Credentials');
             }
         } catch (\Exception $e) {
-            return redirect()->back()->with('error',$e->getMessage());
+            return redirect('/login')->with('error',$e->getMessage());
         }
     }
     // perform logout function here
