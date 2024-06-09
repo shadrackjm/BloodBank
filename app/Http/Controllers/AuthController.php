@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Donor;
 use App\Models\User;
+use App\Models\Donor;
+use App\Models\BloodGroup;
+use App\Models\UserProfile;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PasswordReset;
-use App\Models\UserProfile;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +18,14 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
 
+ public function loadLoginPage(){
+        return view('login-page');
+    }
+
+    public function loadRegister(){
+        $blood_groups = BloodGroup::all();
+        return view('register',compact('blood_groups'));
+    }
     public function registerDonor(Request $request){
         // perform validation here
         $request->validate([
@@ -53,9 +62,9 @@ class AuthController extends Controller
                 $message->to($data['email'])->subject($data['title']);
             });
 
-            return redirect('/donor/registration')->with('success','You Have been Registered Successfully!');
+            return redirect('/register')->with('success','You Have been Registered Successfully!');
         } catch (\Exception $e) {
-            return redirect('/donor/registration')->with('error',$e->getMessage());
+            return redirect('/register')->with('error',$e->getMessage());
             
         }
     }

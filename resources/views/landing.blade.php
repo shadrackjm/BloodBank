@@ -64,25 +64,11 @@
                                 </a>
                             </li>
                             <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="/">About Us</a>
-                            </li>
-                            <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="/">Contact Us</a>
-                            </li>
-                            <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="/">Donor List</a>
-                            </li>
-                            <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="search-donor.php">Search Donor</a>
-                            </li>
-                            
-                            <?php //if (strlen($_SESSION['bbdmsdid']==0)) {?>
-                            <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="/admin/login">Admin/Blood Bank</a>
+                                <a class="nav-link" href="/register">Register</a>
                             </li>
                         </ul>
                         <!-- login -->
-                        <a href="/donor/login" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" >
+                        <a href="/login" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" >
                             <i class="fas fa-sign-in-alt mr-2"></i>Login</a><?php// } ?>
                         <!-- //login -->
                     </div>
@@ -190,30 +176,8 @@
 						</div>
 					</div>
 				</li>
-				<li>
-					<div class="banner-top2">
-						<div class="banner-info_agile_w3ls">
-							<div class="container">
-								<h3>One Blood Donation Save three Lives
-									<span>every day</span>
-								</h3>
-						
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="banner-top3">
-						<div class="banner-info_agile_w3ls">
-							<div class="container">
-						<!-- 		<h3>"Sometimes money cannot save life
-									<span>but donated blood can</span>
-								</h3> -->
 				
-							</div>
-						</div>
-					</div>
-				</li>
+				
 			</ul>
 		</div>
 	</div>
@@ -317,39 +281,7 @@ Type O individuals are often called "universal donors" since their blood can be 
               aperiam,
               eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
           </div>
-          <div class="col-md-4 w3l-footer my-md-0 my-4">
-            <h3 class="mb-sm-3 mb-2 text-white">Address</h3>
-            <ul class="list-unstyled">
-              <?php 
-// $pagetype="contactus";
-// $sql = "SELECT * from tblcontactusinfo";
-// $query = $dbh -> prepare($sql);
-// $query->execute();
-// $results=$query->fetchAll(PDO::FETCH_OBJ);
-// $cnt=1;
-// if($query->rowCount() > 0)
-// {
-// foreach($results as $result)
-// { 
-  ?>
-              <li>
-                <i class="fas fa-location-arrow float-left"></i>
-                <p class="ml-4">
-                  <span><?php //  echo $result->Address; ?>. </p>
-                <div class="clearfix"></div>
-              </li>
-              <li class="my-3">
-                <i class="fas fa-phone float-left"></i>
-                <p class="ml-4"><?php // echo $result->ContactNo; ?></p>
-                <div class="clearfix"></div>
-              </li>
-              <li>
-                <i class="far fa-envelope-open float-left"></i>
-                <a href="mailto:info@example.com" class="ml-3"><?php//  echo $result->EmailId; ?></a>
-                <div class="clearfix"></div>
-              </li>
-            <?php// } } ?></ul>
-          </div>
+          
           <div class="col-md-4 w3l-footer">
             <h3 class="mb-sm-3 mb-2 text-white">Quick Links</h3>
             <div class="nav-w3-l">
@@ -358,10 +290,10 @@ Type O individuals are often called "universal donors" since their blood can be 
                   <a href="/">Home</a>
                 </li>
                 <li class="mt-2">
-                  <a href="about.php">About Us</a>
+                  <a href="/login">Login if your a member</a>
                 </li>
                 <li class="mt-2">
-                  <a href="contact.php">Contact Us</a>
+                  <a href="/register">Register Now!</a>
                 </li>
             
               </ul>
@@ -386,7 +318,7 @@ Type O individuals are often called "universal donors" since their blood can be 
 
 	<!-- banner slider -->
 	<script src="{{asset('js/responsiveslides.min.js')}}"></script>
-	<script>
+	{{-- <script>
 		$(function () {
 			$("#slider4").responsiveSlides({
 				auto: true,
@@ -402,7 +334,7 @@ Type O individuals are often called "universal donors" since their blood can be 
 				}
 			});
 		});
-	</script>
+	</script> --}}
 	<!-- //banner slider -->
 
 	<!-- fixed navigation -->

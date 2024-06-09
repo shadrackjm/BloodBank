@@ -70,8 +70,8 @@
                       @if (Session::has('error'))
                           <div class="alert alert-danger">{{Session::get('error')}}</div>
                       @endif
-                  <form class="row g-3 " action="{{ route('LoginUser')}}">
-
+                  <form class="row g-3 " action="{{ route('LoginUser')}}" method="POST">
+                      @csrf
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
                       <input type="text" placeholder="Username" class="form-control" name="email" value="{{old('email')}}">
@@ -94,7 +94,7 @@
                       <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="/donor/registration">Create an account</a></p>
+                      <p class="small mb-0">Don't have account? <a href="/register">Create an account</a></p>
                     </div>
                   </form>
 

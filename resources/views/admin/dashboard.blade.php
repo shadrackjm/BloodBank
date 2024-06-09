@@ -284,54 +284,51 @@
                     </li>
 
                     <li><a class="dropdown-item" href="#">This Week</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
                   </ul>
                 </div>
 
                 <div class="card-body">
                   <h5 class="card-title">Recent Blood Requests <span>| Week</span></h5>
-
-                  <table class="table table-borderless datatable">
+                <table class="table table-sm table-bordered">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Patient Name</th>
                         <th scope="col">Blood Group</th>
-                        <th scope="col">Request Date</th>
-                        <th scope="col">Blood Bank</th>
+                        <th scope="col">Amount</th>
                         <th scope="col">Price</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Request Date</th>
+                        <th scope="col" colspan="3" class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
+                      @if (count($request_details) > 0)
+                          @foreach ($request_details as $item)
+                              <tr>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td>{{$item->Name}}</td>
+                                <td>{{$item->blood_group}}</td>
+                                <td>{{$item->amount}}</td>
+                                <td>{{$item->price}}</td>
+                                <td>@if ($item->status == 1)
+                                     <span class="badge bg-success">approved</span>
+                                @endif
+                                @if ($item->status == 0)
+                                  <span class="badge bg-warning">pending</span></td>
+                                @endif
+                                @if ($item->status == 2)
+                                  <span class="badge bg-danger">failed</span></td>
+                                @endif
+                                <td>{{$item->created_at}}</td>
+                                <td><a href="/admin/edit/{{$item->id}}" class="btn btn-primary btn-sm">Edit</a></td>
+                              </tr>
+                          @endforeach
+                      @else
+                          <tr>
+                            <td colspan="8">No data found!</td>
+                          </tr>
+                      @endif
                       
                     </tbody>
                   </table>

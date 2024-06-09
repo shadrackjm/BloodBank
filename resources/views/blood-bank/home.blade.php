@@ -28,7 +28,7 @@
                     <img src="{{ Storage::url(auth()->user()->image) }}" alt="Profile" class="rounded-circle">
                     @endif
                     <h2>{{auth()->user()->name}}</h2>
-                    <h3>Donor</h3>
+                    <h3>Blood Bank</h3>
                 </div>
           </div>
 
@@ -59,7 +59,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Role</div>
-                    <div class="col-lg-9 col-md-8">Donor</div>
+                    <div class="col-lg-9 col-md-8">Blood Bank</div>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>

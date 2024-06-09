@@ -32,7 +32,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Patient Name</th>
                         <th scope="col">Blood Group</th>
-                        <th scope="col">Amount</th>
+                        <th scope="col">Amount (ml)</th>
                         <th scope="col">Price</th>
                         <th scope="col">Status</th>
                         <th scope="col">Request Date</th>

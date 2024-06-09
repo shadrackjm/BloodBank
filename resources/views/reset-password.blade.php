@@ -85,7 +85,7 @@
                       <button class="btn btn-primary w-100" type="submit">Reset Password</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0"> <a href="/donor/login">login</a></p>
+                      <p class="small mb-0"> <a href="/login">login</a></p>
                     </div>
                   </form>
 

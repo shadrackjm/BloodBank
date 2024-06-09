@@ -12,14 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DonorController extends Controller
 {
-     public function loadDonorLoginPage(){
-        return view('donor.login-page');
-    }
-
-    public function loadDonorRegister(){
-        $blood_groups = BloodGroup::all();
-        return view('donor.register',compact('blood_groups'));
-    }
+    
 
     public function loadHomePage(){
         $user = auth()->user();

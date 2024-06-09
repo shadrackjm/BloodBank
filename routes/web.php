@@ -17,14 +17,16 @@ Route::post('/reset/user/password',[AuthController::class,'ResetPassword'])->nam
 
 Route::get('/404',[AuthController::class,'load404']);
 Route::get('/logout',[AuthController::class,'LogoutUser']);
-Route::get('/login',[AuthController::class,'LoginUser'])->name('LoginUser');
+Route::get('/login',[AuthController::class,'loadLoginPage']);
+Route::post('/login',[AuthController::class,'LoginUser'])->name('LoginUser');
+Route::get('/register',[AuthController::class,'loadRegister'])->name('loadRegister');
 
+Route::post('/register',[AuthController::class,'registerDonor'])->name('registerDonor');
 
 
 
 Route::get('/',[LandingPage::class,'Landing']);
 Route::get('/landing',[LandingPage::class,'Landing']);
-    Route::get('/admin/login',[AdminController::class,'loadAdminLoginPage']);
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/dashboard', [AdminController::class, 'loadAdminDashboard']);
@@ -73,6 +75,12 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::post('/add/request',[AdminController::class,'addRequest'])->name('admin.add-request');
     Route::get('/edit/{request}',[AdminController::class,'loadEditRequestsForm']);
     Route::post('/edit/request',[AdminController::class,'editRequest'])->name('admin.edit-request');
+
+    Route::get('/reports',[AdminController::class,'loadReports']);
+    Route::get('/users-by-month', [AdminController::class, 'getUsersByMonth']);
+    Route::get('/donors-by-month', [AdminController::class, 'getDonorsByMonth']);
+    Route::get('/requests-by-month', [AdminController::class, 'getDonorsByMonth']);
+
 });
  
 
@@ -86,11 +94,6 @@ Route::group(['middleware' => 'donor', 'prefix' => 'donor'], function(){
     Route::get('/all/donations',[DonorController::class,'loadAllDonations']);
 
 });
-Route::get('/donor/login',[DonorController::class,'loadDonorLoginPage']);
-Route::get('/donor/registration',[DonorController::class,'loadDonorRegister']);
-
-
-Route::get('/register',[AuthController::class,'registerDonor'])->name('registerDonor');
 
 // blood banks routs
 Route::group(['middleware' => 'blood_bank'], function(){

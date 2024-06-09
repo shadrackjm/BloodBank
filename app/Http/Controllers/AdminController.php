@@ -9,16 +9,14 @@ use App\Models\BloodGroup;
 use App\Models\BloodRequest;
 use Illuminate\Http\Request;
 use App\Models\BloodBankStock;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-     public function loadAdminLoginPage(){
-        return view('admin.login');
-    }
-
     public function loadAdminProfile(){
         return view('admin.profile');
     }
@@ -74,11 +72,18 @@ class AdminController extends Controller
         
     }
     public function loadAdminDashboard(){
+
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+        
         $bloodGroupsCount = BloodGroup::count();
         $bloodBankCount = BloodBank::count();
         $donorCount = Donor::count();
         $bloodRequest = BloodRequest::count();
-        return view('admin.dashboard',compact('bloodGroupsCount','donorCount','bloodBankCount','bloodRequest'));
+        $request_details = BloodRequest::join('blood_groups','blood_groups.id','=','blood_requests.blood_group_id')
+        ->whereBetween('blood_requests.created_at', [$startOfWeek, $endOfWeek])
+        ->get(['blood_groups.name as blood_group','blood_requests.*']);
+        return view('admin.dashboard',compact('bloodGroupsCount','donorCount','bloodBankCount','bloodRequest','request_details'));
     }
     public function loadDonorList(){
         $all_donors = Donor::join('users','users.id','=','donors.user_id')
@@ -235,7 +240,7 @@ class AdminController extends Controller
                 'email' => $request->email,
                 'name' => $request->name,
             ]);
-            return redirect('/admin/blood-bank')->with('success','blood group updated successfully');
+            return redirect('/admin/blood-bank')->with('success','blood bank updated successfully');
         } catch (\Exception $th) {
             return redirect('/admin/blood-bank')->with('fail',$th->getMessage());
         }
@@ -483,4 +488,39 @@ class AdminController extends Controller
         }
         
     }
+
+    public function loadReports(){
+        return view('admin.report');
+    }
+
+    public function getUsersByMonth()
+{
+    $users = User::select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+        ->whereYear('created_at', date('Y')) // You can specify the year if needed
+        ->groupBy(DB::raw('MONTH(created_at)'))
+        ->get();
+        
+
+    return response()->json($users);
+}
+
+public function getDonorsByMonth()
+{
+    $donors = Donor::select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+        ->whereYear('created_at', date('Y')) // You can specify the year if needed
+        ->groupBy(DB::raw('MONTH(created_at)'))
+        ->get();
+        
+
+    return response()->json($donors);
+}
+
+public function getRequestsByMonth()
+{
+    $donors = BloodRequest::select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+        ->whereYear('created_at', date('Y')) // You can specify the year if needed
+        ->groupBy(DB::raw('MONTH(created_at)'))
+        ->get();
+    return response()->json($donors);
+}
 }

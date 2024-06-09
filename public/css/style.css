@@ -361,9 +361,9 @@ button.submit:hover {
 .banner-top3 {
     height: 50vw;
 }
-
+/* change this image */
 .banner-top1 {
-    background: url(../images/banner1.jpg) no-repeat 0px 0px;
+    background: url(../images/banner1.jpg) no-repeat 0px 0px; 
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -865,7 +865,7 @@ h3.title {
 /* //treatments */
 /* footer */
 footer {
-    background: url(../images/bg3.jpg) no-repeat center fixed;
+    background: url(../images/bg4.jpg) no-repeat center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

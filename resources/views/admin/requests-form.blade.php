@@ -1,4 +1,4 @@
-@extends('layouts/blood-bank-layout')
+@extends('layouts/admin-layout')
 @section('main-section')
     <div class="container">
          @if (Session::has('success'))
@@ -81,7 +81,7 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="">Amount</label>
+                                <label for="">Amount (ml)</label>
                                 <input type="number" name="amount" id="amount" class="form-control">
                                 @error('amount')
                                     <span class="text-danger">{{$message}}</span>
@@ -116,7 +116,7 @@
         $(document).ready(function(){
             $('#amount').on('keyup change',function(){
                 var value = $(this).val();
-                const blood_request_price = 1000;
+                const blood_request_price = 1318;
 
                 var price = blood_request_price * value;
 

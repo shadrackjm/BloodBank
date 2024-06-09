@@ -64,7 +64,8 @@
                     <h5 class="card-title text-center pb-0 fs-4">Register Your Account</h5>
                     <p class="text-center small">Fill the form below</p>
                   </div>
-                  <form class=" g-3" action="{{ route('registerDonor')}}">
+                  <form class=" g-3" action="{{ route('registerDonor')}}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-6">
                             <label for="yourUsername" class="form-label">Full Name</label>
@@ -150,7 +151,7 @@
                       <button class="btn btn-primary w-100" type="submit">Register</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0 my-3">have an account? <a href="/donor/login">Login</a></p>
+                      <p class="small mb-0 my-3">have an account? <a href="/login">Login</a></p>
                     </div>
                   </form>
 
