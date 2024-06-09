@@ -22,9 +22,7 @@ class AdminController extends Controller
     }
 
     public function UpdateProfile(Request $request){
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        
         try {
                 if ($request->file('image')) {
                     $path = $request->file('image')->store('public/images');
