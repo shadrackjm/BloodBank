@@ -92,7 +92,7 @@
                         <img src="{{ Storage::url(auth()->user()->image) }}" alt="Profile" class="rounded-circle">
                         @endif
                         <div class="pt-2">
-                            <input type="file" name="image" id="image" required>
+                            <input type="file" name="image" id="image">
                         </div>
                       </div>
                     </div>
