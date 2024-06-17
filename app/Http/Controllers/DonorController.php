@@ -12,28 +12,33 @@ use Illuminate\Support\Facades\Storage;
 
 class DonorController extends Controller
 {
-    
-
     public function loadHomePage(){
         $user = auth()->user();
+        $donor = Donor::where('user_id',$user->id)->first();
+        $is_public = $donor->is_public;
         $my_donations = Donation::join('users','users.id','=','donations.user_id')
         ->join('donors','donors.user_id','=','donations.user_id')
         ->where('donations.user_id',$user->id)->limit(5)->get(['users.name','donations.*']);
-        return view('donor.home-page',compact('my_donations'));
+        return view('donor.home-page',compact('my_donations','is_public'));
     }
 
     public function loadAllDonations(){
         $user = auth()->user();
+        $donor = Donor::where('user_id',$user->id)->first();
+        $is_public = $donor->is_public;
         $my_donations = Donation::join('users','users.id','=','donations.user_id')
         ->join('donors','donors.user_id','=','donations.user_id')
         ->where('donations.user_id',$user->id)->get(['users.name','donations.*']);
-        return view('donor.all-donation',compact('my_donations'));
+        return view('donor.all-donation',compact('my_donations','is_public'));
     }
     public function loadProfile(){
+        $user = auth()->user();
+        $donor = Donor::where('user_id',$user->id)->first();
+        $is_public = $donor->is_public;
         $donor_details = Donor::join('blood_groups','blood_groups.id','=','donors.blood_group_id')
-         ->where('donors.user_id',auth()->user()->id)->first();
-
-        return view('donor.profile',compact('donor_details'));
+         ->where('donors.user_id',auth()->user()->id)->first(['donors.*','blood_groups.name','blood_groups.id as blood_group_id']);
+        $blood_groups = BloodGroup::where('id','!=',$donor_details->blood_group_id)->get();
+        return view('donor.profile',compact('donor_details','is_public','blood_groups'));
     }
 
     public function UpdateProfile(Request $request){
@@ -41,6 +46,7 @@ class DonorController extends Controller
             'name' => 'required',
             'email' => 'required',
             'age' => 'required',
+            'blood_group' => 'required',
         ]);
         try {
                 if ($request->file('image')) {
@@ -59,7 +65,8 @@ class DonorController extends Controller
                     
                     $update_age = Donor::where('user_id',$user->id)->first();
                     $update_age->update([
-                        'age' => $request->age
+                        'age' => $request->age,
+                        'blood_group_id' => $request->blood_group,
                     ]);
                     $url = Storage::url($path);
                     return back()->with('success', 'Profile updated successfully')->with('path', $url);
@@ -72,7 +79,8 @@ class DonorController extends Controller
                    
                     $update_age = Donor::where('user_id',$user->id)->first();
                     $update_age->update([
-                        'age' => $request->age
+                        'age' => $request->age,
+                        'blood_group_id' => $request->blood_group,
                     ]);
                     return back()->with('success', 'Profile updated successfully');
 
@@ -97,5 +105,21 @@ class DonorController extends Controller
                     return back()->with('fail', $th->getMessage());
         }
         
+    }
+
+    public function publicPrivate(){
+        $user = auth()->user();
+        $donor = Donor::where('user_id',$user->id)->first();
+
+        if ($donor->is_public == 1) {
+            $donor->update([
+            'is_public' => 0
+            ]);
+        }else
+        $donor->update([
+            'is_public' => 1
+        ]);
+
+        return redirect()->back();
     }
 }

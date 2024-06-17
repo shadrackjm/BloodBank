@@ -205,16 +205,19 @@
         <div class="row">
             <h1 class="card-title text-center my-3">Some of Our Donor</h1>
             @foreach ($all_donors as $item)
-                <div class="card col-md-3 m-2">
-                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    @if (empty($item->image))
-                    <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle" height="70px" width="70px">
-                    @else
-                    <img src="{{ Storage::url($item->image) }}" alt="Profile" class="rounded-circle" height="70px" width="70px">
-                    @endif
-                    <h2>{{$item->name}}</h2>
-                </div>
-          </div>
+                @if ($item->is_public == 1)
+                    <div class="card col-md-3 m-2">
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                            @if (empty($item->image))
+                            <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle" height="70px" width="70px">
+                            @else
+                            <img src="{{ Storage::url($item->image) }}" alt="Profile" class="rounded-circle" height="70px" width="70px">
+                            @endif
+                            <h2>{{$item->name}}</h2>
+                        </div>
+                    </div>
+                @endif
+                
             @endforeach
         </div>
     </div>

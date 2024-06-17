@@ -18,5 +18,6 @@ class Donor extends Model
         'next_donation',
         'blood_group_id',
         'status',
+        'is_public',
     ];
 }
