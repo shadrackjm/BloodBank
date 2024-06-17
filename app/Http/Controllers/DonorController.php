@@ -46,7 +46,6 @@ class DonorController extends Controller
             'name' => 'required',
             'email' => 'required',
             'age' => 'required',
-            'blood_group' => 'required',
         ]);
         try {
                 if ($request->file('image')) {
@@ -66,7 +65,6 @@ class DonorController extends Controller
                     $update_age = Donor::where('user_id',$user->id)->first();
                     $update_age->update([
                         'age' => $request->age,
-                        'blood_group_id' => $request->blood_group,
                     ]);
                     $url = Storage::url($path);
                     return back()->with('success', 'Profile updated successfully')->with('path', $url);
@@ -80,7 +78,6 @@ class DonorController extends Controller
                     $update_age = Donor::where('user_id',$user->id)->first();
                     $update_age->update([
                         'age' => $request->age,
-                        'blood_group_id' => $request->blood_group,
                     ]);
                     return back()->with('success', 'Profile updated successfully');
 

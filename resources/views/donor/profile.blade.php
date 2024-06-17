@@ -112,17 +112,7 @@
                       </div>
                     </div>
 
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Age</label>
-                      <div class="col-md-8 col-lg-9">
-                        <select name="blood_group" class="form-select">
-                          <option value="{{$donor_details->blood_group_id}}">{{$donor_details->name}}</option>
-                          @foreach ($blood_groups as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div>
+                    
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Age</label>
                       <div class="col-md-8 col-lg-9">
