@@ -100,6 +100,7 @@ Route::group(['middleware' => 'donor', 'prefix' => 'donor'], function(){
 Route::group(['middleware' => 'blood_bank'], function(){
     Route::get('/blood-bank/home',[BloodBankController::class,'loadHomePage']);
 
+    Route::get('/bank/donations',[BloodBankController::class,'loadDonations']);
     Route::get('/bank/profile',[BloodBankController::class,'loadProfile']);
     Route::post('/update/profile',[BloodBankController::class,'UpdateProfile'])->name('bank-update-profile');
     Route::post('/update/password',[BloodBankController::class,'UpdatePassword'])->name('bank-update-password');
