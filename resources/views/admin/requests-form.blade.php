@@ -40,7 +40,7 @@
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                         </select>
-                        @error('blood_group_id')
+                        @error('gender')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
@@ -68,6 +68,18 @@
                     </div>
                     <div class="row">
                         <h6 class="text-secondary my-3">Blood Request Details</h6>
+                            <div class="form-group col-md-6">
+                                <label for="">Blood Bank</label>
+                                <select name="blood_bank_id" id="" class="form-select">
+                                    <option value="">Choose Blood Bank</option>
+                                    @foreach ($blood_banks as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('blood_bank_id')
+                                    <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
                             <div class="form-group col-md-6">
                                 <label for="">Blood Group</label>
                                 <select name="blood_group_id" id="" class="form-select">

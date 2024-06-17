@@ -34,6 +34,7 @@ class BloodBankController extends Controller
 
     public function loadBloodRequestsForm(){
         $blood_groups = BloodGroup::all();
+       
         return view('blood-bank.requests-form',compact('blood_groups'));
     }
 
