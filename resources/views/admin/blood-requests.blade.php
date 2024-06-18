@@ -21,7 +21,7 @@
                       @endif
               <div class="card recent-sales overflow-auto">
                 <div class="card-header">
-                    
+
 
                   <h5 class="card-title">Blood Requests <a href="load-request-form" class="btn btn-success btn-sm mx-3 float-end">add new</a></h5>
                 </div>
@@ -66,7 +66,7 @@
                             <td colspan="8">No data found!</td>
                           </tr>
                       @endif
-                      
+
                     </tbody>
                   </table>
 
