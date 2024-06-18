@@ -68,8 +68,19 @@
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown pe-3">
+        @if ($is_public == 1)
+        <a href="/donor/public/private" class="btn btn-outline-danger mx-3" title="This will make you private">
+          Private
+        </a>
+        @endif
+        @if ($is_public == 0)
+        <a href="/donor/public/private" class="btn btn-outline-success mx-3" title="This will make you public">
+          Public
+        </a>
+        @endif
+        
 
+        <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             @if (empty(auth()->user()->image))
               <img src="{{asset('images/blood-donor.jpg')}}" alt="Profile" class="rounded-circle">

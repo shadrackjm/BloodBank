@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Donor;
 use App\Models\BloodBank;
 use App\Models\BloodGroup;
 use App\Models\BloodRequest;
@@ -26,14 +27,16 @@ class BloodBankController extends Controller
     }
 
      public function loadBloodRequests(){
+        $blood_bank = BloodBank::where('user_id',auth()->user()->id)->first();
         $request_details = BloodRequest::join('blood_groups','blood_groups.id','=','blood_requests.blood_group_id')
-        ->where('blood_bank_id',auth()->user()->id)
+        ->where('blood_bank_id',$blood_bank->id)
         ->get(['blood_groups.name as blood_group','blood_requests.*']);
         return view('blood-bank.requests',compact('request_details'));
     }
 
     public function loadBloodRequestsForm(){
         $blood_groups = BloodGroup::all();
+       
         return view('blood-bank.requests-form',compact('blood_groups'));
     }
 
@@ -48,7 +51,7 @@ class BloodBankController extends Controller
      public function addRequest(Request $request){
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'address' => 'string',
             'phone' => 'string',
             'age' => 'required',
@@ -56,9 +59,11 @@ class BloodBankController extends Controller
             'blood_group_id' => 'required',
         ]);
         try {
+
+            $blood_bank = BloodBank::where('user_id',auth()->user()->id)->first();
             $new = new BloodRequest();
             $new->blood_group_id = $request->blood_group_id;
-            $new->blood_bank_id = auth()->user()->id;
+            $new->blood_bank_id = $blood_bank->id;
             $new->Name = $request->name;
             $new->email = $request->email;
             $new->age = $request->age;
@@ -167,5 +172,12 @@ class BloodBankController extends Controller
                     return back()->with('fail', $th->getMessage());
         }
         
+    }
+
+    public function loadDonations(){
+        $all_donors = Donor::join('users','users.id','=','donors.user_id')
+        ->join('blood_groups','blood_groups.id','=','donors.blood_group_id')
+        ->get(['donors.*','users.name','users.email','blood_groups.name as blood_group']);
+        return view('blood-bank.donations',compact('all_donors'));
     }
 }

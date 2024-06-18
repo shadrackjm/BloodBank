@@ -407,7 +407,8 @@ class AdminController extends Controller
 
         public function loadBloodRequestsForm(){
         $blood_groups = BloodGroup::all();
-        return view('admin.requests-form',compact('blood_groups'));
+         $blood_banks = BloodBank::all();
+        return view('admin.requests-form',compact('blood_groups','blood_banks'));
     }
 
      public function loadEditRequestsForm($id){
@@ -428,11 +429,12 @@ class AdminController extends Controller
             'age' => 'required',
             'gender' => 'required',
             'blood_group_id' => 'required',
+            'blood_bank_id' => 'required',
         ]);
         try {
             $new = new BloodRequest();
             $new->blood_group_id = $request->blood_group_id;
-            $new->blood_bank_id = auth()->user()->id;
+            $new->blood_bank_id = $request->blood_bank_id;
             $new->Name = $request->name;
             $new->email = $request->email;
             $new->age = $request->age;

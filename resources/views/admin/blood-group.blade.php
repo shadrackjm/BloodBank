@@ -55,6 +55,7 @@
                               <tr>
                                 <th scope="row"><a href="#">{{$loop->iteration}}</a></th>
                                 <td>{{$item->name}}</td>
+                                <td>{{$item->created_at}}</td>
                                 <td><a class="btn btn-primary btn-sm" href="/admin/edit-blood-group/{{$item->id}}">Edit</a></td>
                                 <td><a class="btn btn-danger btn-sm" href="/admin/delete-blood-group/{{$item->id}}" onclick="return confirm('Are you sure you want to delete?')" >Delete</a></td>
                               </tr>

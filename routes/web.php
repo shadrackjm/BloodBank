@@ -89,6 +89,7 @@ Route::group(['middleware' => 'donor', 'prefix' => 'donor'], function(){
     Route::get('/home',[DonorController::class,'loadHomePage']);
     // profile
     Route::get('/profile',[DonorController::class,'loadProfile']);
+    Route::get('/public/private',[DonorController::class,'publicPrivate']);
     Route::post('/update/profile',[DonorController::class,'UpdateProfile'])->name('donor.update-profile');
     Route::post('/update/password',[DonorController::class,'UpdatePassword'])->name('donor.update-password');
     Route::get('/all/donations',[DonorController::class,'loadAllDonations']);
@@ -100,6 +101,7 @@ Route::group(['middleware' => 'donor', 'prefix' => 'donor'], function(){
 Route::group(['middleware' => 'blood_bank'], function(){
     Route::get('/blood-bank/home',[BloodBankController::class,'loadHomePage']);
 
+    Route::get('/bank/donations',[BloodBankController::class,'loadDonations']);
     Route::get('/bank/profile',[BloodBankController::class,'loadProfile']);
     Route::post('/update/profile',[BloodBankController::class,'UpdateProfile'])->name('bank-update-profile');
     Route::post('/update/password',[BloodBankController::class,'UpdatePassword'])->name('bank-update-password');

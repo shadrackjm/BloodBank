@@ -69,7 +69,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Blood Group</div>
-                    <div class="col-lg-9 col-md-8">{{$donor_details->group_name}}</div>
+                    <div class="col-lg-9 col-md-8">{{$donor_details->name}}</div>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Age</div>
@@ -112,6 +112,7 @@
                       </div>
                     </div>
 
+                    
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Age</label>
                       <div class="col-md-8 col-lg-9">
@@ -157,7 +158,6 @@
                         <input name="password_confirmation" type="password" class="form-control" id="renewPassword">
                       </div>
                     </div>
-
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Change Password</button>
                     </div>

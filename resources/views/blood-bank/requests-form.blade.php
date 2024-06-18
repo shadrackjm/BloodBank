@@ -40,7 +40,7 @@
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                         </select>
-                        @error('blood_group_id')
+                        @error('gender')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

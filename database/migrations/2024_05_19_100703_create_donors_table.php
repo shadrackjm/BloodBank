@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->date('next_donation')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('is_public')->default(0);
             $table->timestamps();
         });
     }
