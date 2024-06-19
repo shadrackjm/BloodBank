@@ -8,12 +8,12 @@
                           <div class="alert alert-danger p-2">{{Session::get('fail')}}</div>
                       @endif
         <div class="card">
-            
+
             <div class="card-header">
                 <h3 class="card-title">Add New Donor Bank</h3>
             </div>
             <div class="card-body">
-                
+
                 <form action="{{ route('admin.edit-donor')}}" method="post">
                     @csrf
                     <input type="hidden" name="user_id" value="{{$donor->user_id}}">
@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <label for="">Active/Inactive</label>
                         <select name="status" id="" class="form-select">
-                            <option value="{{$donor->status}}"> 
+                            <option value="{{$donor->status}}">
                                 @if ($donor->status == 0)
                                     active
                                 @endif
@@ -93,7 +93,7 @@
                                 <option value="1">Inactive</option>
                         </select>
                         @error('status')
-                            <span class="text-danger">{{$message}}</span>
+P                            <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <input type="submit" value="Save" class="btn btn-primary my-3">

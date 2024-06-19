@@ -11,7 +11,7 @@
       </nav>
     </div><!-- End Page Title -->
 
- 
+
     <section class="section dashboard">
             @if (Session::has('success'))
             <div class="alert alert-success p-2">{{Session::get('success')}}</div>
@@ -50,7 +50,7 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Last Donation</th>
+                        <th scope="col">Donation_Date</th>
                         <th scope="col">Next Donation</th>
                         <th scope="col">Status</th>
                         <th scope="col" colspan="2">Actions</th>
@@ -84,7 +84,7 @@
                             <td colspan="8">No data found!</td>
                           </tr>
                       @endif
-                      
+
                     </tbody>
                   </table>
 

@@ -8,12 +8,12 @@
             <div class="alert alert-danger p-2">{{Session::get('fail')}}</div>
         @endif
         <div class="card">
-            
+
             <div class="card-header">
                 <h3 class="card-title"> Blood Request</h3>
             </div>
             <div class="card-body">
-                
+
                 <form action="{{ route('admin.edit-request')}}" method="post">
                     @csrf
                     <input type="hidden" name="request_id" value="{{$request->id}}">
@@ -129,7 +129,7 @@
         $(document).ready(function(){
             $('#amount').on('keyup change',function(){
                 var value = $(this).val();
-                const blood_request_price = 1000;
+                const blood_request_price = 1000Tzs;
 
                 var price = blood_request_price * value;
 

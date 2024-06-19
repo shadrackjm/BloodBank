@@ -35,6 +35,12 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/blood-requests', [AdminController::class, 'loadBloodRequests']);
     Route::get('/manage-users', [AdminController::class, 'loadUsers']);
 
+    Route::get('/edit/user/{id}', [AdminController::class, 'loadEditUser']);
+    Route::post('/edit-user', [AdminController::class, 'EditUser'])->name('admin.edit-user');
+
+    Route::get('/delete/user/{id}', [AdminController::class, 'deleteUser']);
+
+
     // Blood groups
     Route::get('/load-blood-group-form', [AdminController::class, 'loadAddBlood']);
     Route::post('/add-blood-group', [AdminController::class, 'addBloodGroup'])->name('admin.add-blood-group');
