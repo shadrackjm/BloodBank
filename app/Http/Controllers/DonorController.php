@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Donation;
-use App\Models\Donor;
 use App\Models\User;
+use App\Models\Donor;
+use App\Models\Donation;
 use App\Models\BloodGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class DonorController extends Controller
@@ -26,9 +28,12 @@ class DonorController extends Controller
         $user = auth()->user();
         $donor = Donor::where('user_id',$user->id)->first();
         $is_public = $donor->is_public;
-        $my_donations = Donation::join('users','users.id','=','donations.user_id')
-        ->join('donors','donors.user_id','=','donations.user_id')
-        ->where('donations.user_id',$user->id)->get(['users.name','donations.*']);
+
+        $my_donations = Donor::join('users', 'users.id', '=', 'donors.user_id')
+            ->join('blood_groups', 'blood_groups.id', '=', 'donors.blood_group_id')
+            ->join('donations','donations.user_id', '=', 'users.id')
+            ->where('donations.user_id',$user->id)
+            ->get(['donations.donation_date','donations.amount','donors.*', 'users.name', 'users.email', 'blood_groups.name as blood_group','donations.next_donation']);
         return view('donor.all-donation',compact('my_donations','is_public'));
     }
 
@@ -64,6 +69,7 @@ class DonorController extends Controller
                         'image' => $path,
                     ]);
 
+
                     $update_age = Donor::where('user_id',$user->id)->first();
                     $update_age->update([
                         'age' => $request->age
@@ -77,6 +83,7 @@ class DonorController extends Controller
                         'email' => $request->email,
                     ]);
 
+
                     $update_age = Donor::where('user_id',$user->id)->first();
                     $update_age->update([
                         'age' => $request->age
@@ -87,6 +94,7 @@ class DonorController extends Controller
         } catch (\Exception $th) {
             return back()->with('fail', $th->getMessage());
         }
+
     }
 
 
@@ -96,14 +104,16 @@ class DonorController extends Controller
         ]);
 
         try {
-            $user = User::find(auth()->user()->id);
-            $user->update([
-                'password' => Hash::make($request->password),
-            ]);
-            return back()->with('success', 'Password updated successfully');
+
+                    $user = User::find(auth()->user()->id);
+                    $user->update([
+                        'password' => Hash::make($request->password),
+                    ]);
+                    return back()->with('success', 'Password updated successfully');
         } catch (\Exception $th) {
             return back()->with('fail', $th->getMessage());
         }
+
     }
 
     public function publicPrivate(){
@@ -120,5 +130,13 @@ class DonorController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function deleteAccount(){
+        $user = auth()->user();
+        $delete = User::where('id',$user->id)->delete();
+        Session::flush();
+        Auth::logout();
+        return redirect('/');
     }
 }

@@ -114,9 +114,12 @@ class AdminController extends Controller
         return view('admin.dashboard',compact('bloodGroupsCount','donorCount','bloodBankCount','bloodRequest','request_details'));
     }
     public function loadDonorList(){
+        $maxId = DB::table('donations')->max('id');
         $all_donors = Donor::join('users','users.id','=','donors.user_id')
+        ->join('donations','donations.user_id','=','donors.user_id')
         ->join('blood_groups','blood_groups.id','=','donors.blood_group_id')
-        ->get(['donors.*','users.name','users.email','blood_groups.name as blood_group']);
+        ->where('donations.id', '=', $maxId)
+        ->get(['donors.*','users.name','users.email','blood_groups.name as blood_group','donations.donation_date','donations.next_donation']);
         return view('admin.donor-list',compact('all_donors'));
     }
 

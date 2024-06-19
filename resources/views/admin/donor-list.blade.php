@@ -67,8 +67,8 @@
                                 <td>{{$item->phone}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->address}}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$item->donation_date}}</td>
+                                <td>{{$item->next_donation}}</td>
                                 <td>@if ($item->status == 1)
                                      <span class="badge bg-danger">inactive</span>
                                 @endif

@@ -67,7 +67,9 @@
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
-
+        <a href="/donor/delete/account" class="btn btn-outline-danger mx-3" title="This will delete all your data" onclick="return confirm('This will delete your account and all your data from the system')">
+            Delete Account
+          </a>
         @if ($is_public == 1)
         <a href="/donor/public/private" class="btn btn-outline-danger mx-3" title="This will make you private">
           Private
@@ -78,7 +80,7 @@
           Public
         </a>
         @endif
-        
+
 
         <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">

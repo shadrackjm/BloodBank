@@ -32,13 +32,13 @@
             <div class="card-body">
                 <table class="table table-sm table-bordered">
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Donor Name</th>
-                            <th scope="col">Donation_Date</th>
-                            <th scope="col">Next Donation</th>
-                            <th scope="col">Status</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Donor Name</th>
+                        <th scope="col">Donation Date</th>
+                        <th scope="col">Next Donation</th>
+                        <th scope="col">Status</th>
+                      </tr>
                     </thead>
                     <tbody>
                         @if (count($my_donations) > 0)

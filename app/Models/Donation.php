@@ -13,5 +13,6 @@ class Donation extends Model
         'user_id',
         'donation_date',
         'next_donation',
+        'amount',
     ];
 }

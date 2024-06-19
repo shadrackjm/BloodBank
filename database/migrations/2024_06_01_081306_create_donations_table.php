@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('amount')->nullable();
+            $table->string('notes')->nullable();
             $table->date('donation_date')->nullable();
             $table->date('next_donation')->nullable();
             $table->timestamps();
