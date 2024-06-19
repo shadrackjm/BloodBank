@@ -11,7 +11,7 @@
       </nav>
     </div><!-- End Page Title -->
 
- 
+
     <section class="section dashboard">
             @if (Session::has('success'))
             <div class="alert alert-success p-2">{{Session::get('success')}}</div>
@@ -67,8 +67,8 @@
                                 <td>{{$item->phone}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->address}}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$item->donation_date}}</td>
+                                <td>{{$item->next_donation}}</td>
                                 <td>@if ($item->status == 1)
                                      <span class="badge bg-danger">inactive</span>
                                 @endif
@@ -84,7 +84,7 @@
                             <td colspan="8">No data found!</td>
                           </tr>
                       @endif
-                      
+
                     </tbody>
                   </table>
 

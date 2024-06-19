@@ -23,7 +23,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Donor Name</th>
-                        <th scope="col">Last Donation</th>
+                        <th scope="col">Donation Date</th>
                         <th scope="col">Next Donation</th>
                         <th scope="col">Status</th>
                       </tr>

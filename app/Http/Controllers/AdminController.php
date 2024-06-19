@@ -22,7 +22,7 @@ class AdminController extends Controller
     }
 
     public function UpdateProfile(Request $request){
-        
+
         try {
                 if ($request->file('image')) {
                     $path = $request->file('image')->store('public/images');
@@ -51,14 +51,14 @@ class AdminController extends Controller
         } catch (\Exception $th) {
                     return back()->with('fail', $th->getMessage());
         }
-        
+
     }
     public function UpdatePassword(Request $request){
         $request->validate([
             'password' => 'required|confirmed',
         ]);
         try {
-                
+
                     $user = User::find(auth()->user()->id);
                     $user->update([
                         'password' => Hash::make($request->password),
@@ -67,13 +67,13 @@ class AdminController extends Controller
         } catch (\Exception $th) {
                     return back()->with('fail', $th->getMessage());
         }
-        
+
     }
     public function loadAdminDashboard(){
 
         $startOfWeek = Carbon::now()->startOfWeek();
         $endOfWeek = Carbon::now()->endOfWeek();
-        
+
         $bloodGroupsCount = BloodGroup::count();
         $bloodBankCount = BloodBank::count();
         $donorCount = Donor::count();
@@ -84,9 +84,12 @@ class AdminController extends Controller
         return view('admin.dashboard',compact('bloodGroupsCount','donorCount','bloodBankCount','bloodRequest','request_details'));
     }
     public function loadDonorList(){
+        $maxId = DB::table('donations')->max('id');
         $all_donors = Donor::join('users','users.id','=','donors.user_id')
+        ->join('donations','donations.user_id','=','donors.user_id')
         ->join('blood_groups','blood_groups.id','=','donors.blood_group_id')
-        ->get(['donors.*','users.name','users.email','blood_groups.name as blood_group']);
+        ->where('donations.id', '=', $maxId)
+        ->get(['donors.*','users.name','users.email','blood_groups.name as blood_group','donations.donation_date','donations.next_donation']);
         return view('admin.donor-list',compact('all_donors'));
     }
 
@@ -140,11 +143,11 @@ class AdminController extends Controller
             return redirect('/admin/blood-groups')->with('fail',$th->getMessage());
 
         }
-        
+
     }
 
     public function deleteBloodGroup($id){
-        
+
         try {
             $blood = BloodGroup::find($id);
             $blood->delete();
@@ -199,11 +202,11 @@ class AdminController extends Controller
             return redirect('/admin/blood-bank')->with('fail',$th->getMessage());
 
         }
-        
+
     }
 
      public function deleteBloodBank($id){
-        
+
         try {
             $blood = BloodBank::find($id);
             $blood->delete();
@@ -268,11 +271,11 @@ class AdminController extends Controller
             return redirect('/admin/blood-stock')->with('fail',$th->getMessage());
 
         }
-        
+
     }
 
      public function deleteBloodBankStock($id){
-        
+
         try {
             $blood = BloodBankStock::find($id);
             $blood->delete();
@@ -350,11 +353,11 @@ class AdminController extends Controller
             return redirect('/admin/donor/list')->with('fail',$th->getMessage());
 
         }
-        
+
     }
 
      public function deleteDonor($id){
-        
+
         try {
             $blood = Donor::find($id);
             $blood->delete();
@@ -451,7 +454,7 @@ class AdminController extends Controller
             return redirect('/admin/blood-requests')->with('fail',$th->getMessage());
 
         }
-        
+
     }
 
      public function editRequest(Request $request){
@@ -479,14 +482,14 @@ class AdminController extends Controller
                     'price' => $request->price,
                     'status' => $request->status,
             ]);
-            
+
 
             return redirect('/admin/blood-requests')->with('success','Patient Blood Request Updated successfully');
         } catch (\Exception $th) {
             return redirect('/admin/blood-requests')->with('fail',$th->getMessage());
 
         }
-        
+
     }
 
     public function loadReports(){
@@ -499,7 +502,7 @@ class AdminController extends Controller
         ->whereYear('created_at', date('Y')) // You can specify the year if needed
         ->groupBy(DB::raw('MONTH(created_at)'))
         ->get();
-        
+
 
     return response()->json($users);
 }
@@ -510,7 +513,7 @@ public function getDonorsByMonth()
         ->whereYear('created_at', date('Y')) // You can specify the year if needed
         ->groupBy(DB::raw('MONTH(created_at)'))
         ->get();
-        
+
 
     return response()->json($donors);
 }
