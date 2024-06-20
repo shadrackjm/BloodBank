@@ -35,6 +35,13 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/blood-requests', [AdminController::class, 'loadBloodRequests']);
     Route::get('/manage-users', [AdminController::class, 'loadUsers']);
 
+
+    Route::get('/edit/user/{id}', [AdminController::class, 'loadEditUser']);
+    Route::post('/edit-user', [AdminController::class, 'EditUser'])->name('admin.edit-user');
+
+    Route::get('/delete/user/{id}', [AdminController::class, 'deleteUser']);
+
+
     // Blood groups
     Route::get('/load-blood-group-form', [AdminController::class, 'loadAddBlood']);
     Route::post('/add-blood-group', [AdminController::class, 'addBloodGroup'])->name('admin.add-blood-group');
@@ -42,12 +49,14 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/edit-blood-group/{id}', [AdminController::class, 'loadEditBloodGroup']);
     Route::post('/edit-blood-group', [AdminController::class, 'editBloodGroup'])->name('admin.edit-blood-group');
 
+
     // Blood banks
     Route::get('/load-blood-bank-form', [AdminController::class, 'loadAddBloodBank']);
     Route::post('/add-blood-bank', [AdminController::class, 'addBloodBank'])->name('admin.add-blood-bank');
     Route::get('/delete-blood-bank/{id}', [AdminController::class, 'deleteBloodBank']);
     Route::get('/edit-blood-bank/{id}', [AdminController::class, 'loadEditBloodBank']);
     Route::post('/edit-blood-bank', [AdminController::class, 'editBloodBank'])->name('admin.edit-blood-bank');
+
 
     // Blood bank stock
     Route::get('/blood-stock', [AdminController::class, 'loadBloodStock']);
@@ -57,6 +66,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/edit-blood-bank-stock/{id}', [AdminController::class, 'loadEditBloodBankStock']);
     Route::post('/edit-blood-bank-stock', [AdminController::class, 'editBloodBankStock'])->name('admin.edit-blood-bank-stock');
 
+
     // Donors
     Route::get('/donor/list', [AdminController::class, 'loadDonorList']);
     Route::get('/load-add-donor', [AdminController::class, 'loadAddDonor']);
@@ -64,6 +74,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/delete-donor/{id}', [AdminController::class, 'deleteDonor']);
     Route::get('/edit-donor/{id}', [AdminController::class, 'loadEditDonor']);
     Route::post('/edit-donor', [AdminController::class, 'editDonor'])->name('admin.edit-donor');
+
 
     // Profile
     Route::get('/profile', [AdminController::class, 'loadAdminProfile']);
@@ -84,6 +95,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 });
 
 
+
 // donor urls
 Route::group(['middleware' => 'donor', 'prefix' => 'donor'], function(){
     Route::get('/home',[DonorController::class,'loadHomePage']);
@@ -94,6 +106,7 @@ Route::group(['middleware' => 'donor', 'prefix' => 'donor'], function(){
     Route::post('/update/profile',[DonorController::class,'UpdateProfile'])->name('donor.update-profile');
     Route::post('/update/password',[DonorController::class,'UpdatePassword'])->name('donor.update-password');
     Route::get('/all/donations',[DonorController::class,'loadAllDonations']);
+    Route::get('/donor/registration', [DonorController::class, 'showRegistrationForm'])->name('donor.registration');
 
 });
 

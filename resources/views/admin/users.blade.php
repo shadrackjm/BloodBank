@@ -34,7 +34,7 @@
 
                   <table class="table table-sm table-bordered">
                     <thead>
-                     
+
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
@@ -49,7 +49,7 @@
                        @if (count($all_users) > 0)
                           @foreach ($all_users as $item)
                               <tr>
-                                <th scope="row">2</th>
+                                <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
                                 @if ($item->role == 0)
@@ -68,8 +68,8 @@
                                  @if ($item->status == 1)
                                   <td><span class="badge bg-success">active</span></td>
                                 @endif
-                                <td><button class="btn btn-primary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                                <td><a href="/admin/edit/user/{{$item->id}}" class="btn btn-primary btn-sm">Edit</a></td>
+                                <td><a href="/admin/delete/user/{{$item->id}}" onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger btn-sm">Delete</a></td>
                               </tr>
                           @endforeach
                       @else
@@ -77,7 +77,7 @@
                             <td>No data found!</td>
                           </tr>
                       @endif
-                      
+
                     </tbody>
                   </table>
 

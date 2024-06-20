@@ -50,6 +50,8 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
+                        <th scope="col">Donation_Date</th>
+                        <th scope="col">Next Donation</th>
                         <th scope="col">Status</th>
                         <th scope="col" colspan="2">Actions</th>
                       </tr>

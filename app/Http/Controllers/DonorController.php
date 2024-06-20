@@ -36,6 +36,7 @@ class DonorController extends Controller
             ->get(['donations.donation_date','donations.amount','donors.*', 'users.name', 'users.email', 'blood_groups.name as blood_group','donations.next_donation']);
         return view('donor.all-donation',compact('my_donations','is_public'));
     }
+
     public function loadProfile(){
         $user = auth()->user();
         $donor = Donor::where('user_id',$user->id)->first();
@@ -52,6 +53,7 @@ class DonorController extends Controller
             'email' => 'required',
             'age' => 'required',
         ]);
+
         try {
                 if ($request->file('image')) {
                     $path = $request->file('image')->store('public/images');
@@ -67,9 +69,10 @@ class DonorController extends Controller
                         'image' => $path,
                     ]);
 
+
                     $update_age = Donor::where('user_id',$user->id)->first();
                     $update_age->update([
-                        'age' => $request->age,
+                        'age' => $request->age
                     ]);
                     $url = Storage::url($path);
                     return back()->with('success', 'Profile updated successfully')->with('path', $url);
@@ -80,22 +83,26 @@ class DonorController extends Controller
                         'email' => $request->email,
                     ]);
 
+
                     $update_age = Donor::where('user_id',$user->id)->first();
                     $update_age->update([
-                        'age' => $request->age,
+                        'age' => $request->age
                     ]);
                     return back()->with('success', 'Profile updated successfully');
 
                 }
         } catch (\Exception $th) {
-                    return back()->with('fail', $th->getMessage());
+            return back()->with('fail', $th->getMessage());
         }
 
     }
+
+
     public function UpdatePassword(Request $request){
         $request->validate([
             'password' => 'required|confirmed',
         ]);
+
         try {
 
                     $user = User::find(auth()->user()->id);
@@ -104,7 +111,7 @@ class DonorController extends Controller
                     ]);
                     return back()->with('success', 'Password updated successfully');
         } catch (\Exception $th) {
-                    return back()->with('fail', $th->getMessage());
+            return back()->with('fail', $th->getMessage());
         }
 
     }

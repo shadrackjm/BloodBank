@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="eng">
 
 <head>
-	<title>Blood Bank Donor Management System | Home Page</title>
-	
+	<title>Blood Donation System| Home Page</title>
+
 	<script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -46,10 +46,8 @@
                 <div class="container">
                     <!-- logo -->
                     <h6>
-                        <a class="navbar-brand font-weight-bold font-italic" href="/">
-                            <span>Blood Donation</span>
-                            <i class="fa fa-flask"></i>
-                        </a>
+
+                            <span style="color: rgb(230, 19, 19); font-size: 20px; font-family: Arial, sans-serif;"><i>Blood Donation system</i></span>
                     </h6>
                     <!-- //logo -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -64,7 +62,8 @@
                                 </a>
                             </li>
                             <li class="nav-item mx-lg-4 my-lg-0 my-3">
-                                <a class="nav-link" href="/register">Register</a>
+                                <a class="nav-link" href="/register" style="color: rgb(29, 8, 8); font-family: Arial, sans-serif; font-size: 20px;"><b>Register</b></a>
+
                             </li>
                         </ul>
                         <!-- login -->
@@ -77,7 +76,7 @@
         </div>
         <!-- //navigation -->
         <!-- modal -->
-   
+
         <!-- register -->
         <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -99,7 +98,7 @@
                                     <label>Mobile Number</label>
                                     <input type="text" class="form-control" name="mobileno" id="mobileno" required="true" placeholder="Mobile Number" maxlength="10" pattern="[0-9]+">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label class="mb-2">Email Id</label>
                                     <input type="email" name="emailid" class="form-control" placeholder="Email Id">
@@ -119,21 +118,9 @@
                                 <div class="form-group">
                                     <label class="mb-2">Blood Group</label>
                                     <select name="bloodgroup" class="form-control" required>
-<?php 
-// $sql = "SELECT * from  tblbloodgroup ";
-// $query = $dbh -> prepare($sql);
-// $query->execute();
-// $results=$query->fetchAll(PDO::FETCH_OBJ);
-// $cnt=1;
-// if($query->rowCount() > 0)
-// {
-// foreach($results as $result)
-// {               ?>  
-<option value="<?php //echo htmlentities($result->BloodGroup);?>"><?php //echo htmlentities($result->BloodGroup);?></option>
-<?php// }} ?>
-</select>
+
                                 </div>
-                               
+
                                 <div class="form-group">
                                     <label>Address</label>
                                     <input type="text" class="form-control" name="address" id="address" required="true" placeholder="Address">
@@ -146,9 +133,9 @@
                                     <label>Password</label>
                                     <input type="password" class="form-control" name="password" id="password" required="">
                                 </div>
-                               
+
                                 <button type="submit" class="btn btn-primary submit mb-4" name="submit">Register</button>
-                              
+
                             </form>
                         </div>
                     </div>
@@ -168,16 +155,42 @@
 					<div class="banner-top1">
 						<div class="banner-info_agile_w3ls">
 							<div class="container">
-								<h3>Blood bank services that you
-									<span>can trust</span>
-								</h3>
-								
+								<h3 style="font-family: 'Arial', sans-serif; color: #0e0b0b; text-align: center; position: relative; padding: 20px;">
+                                    <span style="display:block; font-size:20; font-weight: bold; margin-bottom: 10px; animation: fadeIn 2s ease-in-out;">Welcome to blood donation service</span>
+                                    <br>
+                                    <span style="display: block; font-size:20; color: #8F0B0B; animation: fadeIn 4s ease-in-out;">Once a blood donor, forever a life saver.</span>
+                                    <div style="content: ''; display: block; width: 250px; height: 3px; background: linear-gradient(to right, #8F0B0B, #110E07); margin: 10px auto 0; animation: expand 2s ease-in-out;"></div>
+                                </h3>
+                            </style>
+                            <style>
+                                @keyframes fadeIn {
+                                    from {
+                                        opacity: 0;
+                                        transform: translateY(-20px);
+                                    }
+                                    to {
+                                        opacity: 1;
+                                        transform: translateY(0);
+                                    }
+                                }
+                                @keyframes expand {
+                                    from {
+                                        width: 0;
+                                    }
+                                    to {
+                                        width: 100px;
+                                    }
+                                }
+                            </style>
+
+
+
 							</div>
 						</div>
 					</div>
 				</li>
-				
-				
+
+
 			</ul>
 		</div>
 	</div>
@@ -188,15 +201,12 @@
 	<div class="banner-bottom py-5">
 		<div class="d-flex container py-xl-3 py-lg-3">
 			<div class="banner-left-bottom-w3ls offset-lg-2 offset-md-1">
-				<h3 class="text-white my-3">High professional doctors</h3>
-				<p>all specialists have extensive practical experience and regularly training courses in educational centers of the
-					world</p>
+			<h3 class="text-white my-3"><br><br>High professional doctors</h3>
+                <br>
+				<p style="color: black"><b>All specialists have extensive practical experience and regularly training courses in educational centers of the
+					world</b></p>
 			</div>
-			<div class="button">
-				<a href="about.php" class="w3ls-button-agile">Read More
-					<i class="fas fa-hand-point-right"></i>
-				</a>
-			</div>
+
 		</div>
 	</div>
 	<!-- //banner bottom -->
@@ -235,10 +245,10 @@
 			</div>
 			<div class="row">
             <div class="col-lg-6">
-               
+
                 <ul>
-                
-                
+
+
 <li>A positive or A negative</li>
 <li>B positive or B negative</li>
 <li>O positive or O negative</li>
@@ -259,9 +269,9 @@ The most common blood type is O, followed by type A.
 
 Type O individuals are often called "universal donors" since their blood can be transfused into persons with any blood type. Those with type AB blood are called "universal recipients" because they can receive blood of any type.</p>
             </div>
-            <div class="col-md-4" style="padding-top: 30px;"> 
-    
-                <a class="btn btn-lg btn-secondary btn-block login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3"  href="/donor/registration" > Become a Donar</a>
+            <div class="col-md-4" style="padding-top: 30px;">
+
+                <a class="btn btn-lg btn-secondary btn-block login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3"  href="/register" > Become a Donar</a>
             </div>
         </div>
 		</div>
@@ -276,15 +286,14 @@ Type O individuals are often called "universal donors" since their blood can be 
           <div class="col-md-4 w3l-footer">
             <h2 class="mb-sm-3 mb-2">
               <a href="/" class="text-white font-italic font-weight-bold">
-                <span>Blood Bank & </span>Donor Management System 
+                <span>Blood Donation System</span>
                 <i class="fas fa-syringe ml-2"></i>
               </a>
             </h2>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-              aperiam,
-              eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <p>
+                Donating blood is a simple yet powerful act that saves lives. With just a small amount of your time, you can provide a lifeline to accident victims, surgery patients, and those battling chronic illnesses. Our safe and efficient blood donation system ensures your contribution makes a real difference. Be a hero in your community—donate blood today and help save lives.</p>
           </div>
-          
+
           <div class="col-md-4 w3l-footer">
             <h3 class="mb-sm-3 mb-2 text-white">Quick Links</h3>
             <div class="nav-w3-l">
@@ -298,14 +307,14 @@ Type O individuals are often called "universal donors" since their blood can be 
                 <li class="mt-2">
                   <a href="/register">Register Now!</a>
                 </li>
-            
+
               </ul>
             </div>
           </div>
         </div>
         <div class="border-top mt-5 pt-lg-4 pt-3 pb-lg-0 pb-3 text-center">
-          <p class="copy-right-grids mt-lg-1">©  Blood Bank Donor Management System
-           
+          <p class="copy-right-grids mt-lg-1">©  Blood Donation System
+
           </p>
         </div>
       </div>
