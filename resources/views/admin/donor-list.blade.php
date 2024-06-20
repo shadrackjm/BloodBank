@@ -50,8 +50,6 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Last Donation</th>
-                        <th scope="col">Next Donation</th>
                         <th scope="col">Status</th>
                         <th scope="col" colspan="2">Actions</th>
                       </tr>
@@ -67,8 +65,6 @@
                                 <td>{{$item->phone}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->address}}</td>
-                                <td>{{$item->donation_date}}</td>
-                                <td>{{$item->next_donation}}</td>
                                 <td>@if ($item->status == 1)
                                      <span class="badge bg-danger">inactive</span>
                                 @endif
