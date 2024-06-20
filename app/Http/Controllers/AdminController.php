@@ -21,36 +21,6 @@ class AdminController extends Controller
         return view('admin.profile');
     }
 
-    public function deleteUser($id){
-        $user = User::find($id);
-        $user->delete();
-        return redirect('/admin/manage/users')->with('success','user deleted successfully');
-    }
-    public function loadEditUser($id){
-        $user_id = $id;
-        $user_data = User::find($user_id);
-        return view('admin.edit-user',compact('user_id','user_data'));
-    }
-
-     public function EditUser(Request $request){
-
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'status' => 'required',
-        ]);
-
-        $user = User::find($request->user_id);
-
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'status' => $request->status,
-        ]);
-
-        return redirect('/admin/manage-users')->with('success','user updated successfully');
-}
-
     public function UpdateProfile(Request $request){
 
         try {
